@@ -1,0 +1,63 @@
+## ==========================================
+## Build & Output Directories
+## ==========================================
+bin/
+obj/
+out/
+[Bb]in/
+[Oo]bj/
+
+## ==========================================
+## Visual Studio 2022 Temp & User Files
+## ==========================================
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+*.userprefs
+
+## ==========================================
+## Windows Forms / Designer Auto-Generated
+## ==========================================
+# Archivos de caché del diseñador visual
+*.Designer.cs.cache
+*.resx.cache
+
+## ==========================================
+## NuGet Packages & Tools
+## ==========================================
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/repositories.config
+!**/packages/resources.config
+*.nuget.props
+*.nuget.targets
+
+## ==========================================
+## C++ / Interop / Native Artifacts (if any)
+## ==========================================
+*.pdb
+*.exe
+*.dll
+*.node
+
+## ==========================================
+## OS Generated Files
+## ==========================================
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+## ==========================================
+## Rider / Omnisharp / Other Editors (Optional)
+## ==========================================
+.idea/
+.vscode/
+*.swp
+*~
