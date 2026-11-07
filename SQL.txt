@@ -1,0 +1,50 @@
+-- =======================================================
+-- 1. Creación de la Base de Datos
+-- =======================================================
+CREATE DATABASE AUTOSERVICE;
+GO
+
+USE AUTOSERVICE;
+GO
+
+-- =======================================================
+-- 2. Tabla de Roles (Ej: Administrador, Cajero, Cliente)
+-- =======================================================
+CREATE TABLE Rol (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    NOMBRE VARCHAR(50) NOT NULL,
+    DESCRIPCION VARCHAR(150) NULL,
+    ACTIVO BIT DEFAULT 1,
+    FECHA_REGISTRO DATETIME DEFAULT GETDATE()
+);
+GO
+
+-- =======================================================
+-- 3. Tabla de Usuarios (Para el Login)
+-- =======================================================
+CREATE TABLE Usuario (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    NOMBRE VARCHAR(50) NOT NULL UNIQUE,
+    PASSWORD VARCHAR(255) NOT NULL, -- Almacenará la contraseña (idealmente encriptada)
+    APELLIDO VARCHAR(50) NOT NULL,
+    ID_ROL INT NOT NULL,
+    ACTIVO BIT DEFAULT 1,
+    FECHA_REGISTRO DATETIME DEFAULT GETDATE(),
+    CONSTRAINT FK_Usuario_Rol FOREIGN KEY (ID_ROL) REFERENCES Rol(ID)
+);
+GO
+
+-- =======================================================
+-- 4. Datos Iniciales (Seed Data)
+-- =======================================================
+
+-- Insertar Roles
+INSERT INTO Rol (NOMBRE, DESCRIPCION) VALUES 
+('Administrador', 'Acceso total al sistema'),
+('Consultor', 'Acceso de solo lectura');
+GO
+
+INSERT INTO Usuario (NOMBRE,PASSWORD,APELLIDO,ID_ROL) VALUES 
+('Juan', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Perez',1),
+('Maria', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','Gomez',2);
+GO
