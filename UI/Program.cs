@@ -7,11 +7,21 @@ namespace UI
         /// </summary>
         [STAThread]
         static void Main()
-        {////Aaaa
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+        {
+             ApplicationConfiguration.Initialize();
+
+             LoginForm loginForm = new LoginForm();
+
+             
+            if (loginForm.ShowDialog() == DialogResult.OK)
+            {
+                 Application.Run(new Form1());
+            }
+            else
+            {
+                // Si cierra la ventana sin loguearse, la aplicación termina limpiamente
+                Application.Exit();
+            }
         }
     }
 }

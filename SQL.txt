@@ -1,0 +1,21 @@
+-- =======================================================
+-- 1. Creación de la Base de Datos
+-- =======================================================
+CREATE DATABASE AUTOSERVICE;
+GO
+
+USE AUTOSERVICE;
+GO
+ 
+-- =======================================================
+-- 3. Tabla de Usuarios (Para el Login)
+-- =======================================================
+CREATE TABLE Usuario (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    USUARIO VARCHAR(50) NOT NULL UNIQUE,
+    PASSWORD VARCHAR(255) NOT NULL, -- Almacenará la contraseña (idealmente encriptada)
+    FECHA_REGISTRO DATETIME DEFAULT GETDATE()
+);
+GO
+
+ 
