@@ -14,19 +14,19 @@ namespace UI
 {
     public partial class LoginForm : Form
     {
-        private UsuarioBss bss= new UsuarioBss();
+        private UsuarioBss bss = new UsuarioBss();
         public LoginForm()
         {
             InitializeComponent();
         }
-         private void btnIngresar_Click(object sender, EventArgs e)
+        private void btnIngresar_Click(object sender, EventArgs e)
         {
-             if (ValidarCredenciales(txtUsuario.Text, txtPassword.Text))
+            if (ValidarCredenciales(txtUsuario.Text, txtPassword.Text))
             {
                 MessageBox.Show("¡Inicio de sesión exitoso! Bienvenido.", "Éxito",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
-                 this.Close();
+                this.Close();
             }
             else
             {
@@ -35,15 +35,15 @@ namespace UI
             }
         }
 
-         private void btnRegistrarse_Click(object sender, EventArgs e)
+        private void btnRegistrarse_Click(object sender, EventArgs e)
         {
-             this.Hide(); 
+            this.Hide();
             using (RegisterForm registerForm = new RegisterForm())
             {
                 registerForm.ShowDialog();
-            } 
+            }
             this.Show();
-        } 
+        }
         private bool ValidarCredenciales(string usuario, string password)
         {
             try
@@ -56,10 +56,15 @@ namespace UI
                 bss.login(entity);
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

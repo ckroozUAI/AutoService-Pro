@@ -14,12 +14,12 @@ namespace UI
 {
     public partial class RegisterForm : Form
     {
-        private UsuarioBss bss= new UsuarioBss();
+        private UsuarioBss bss = new UsuarioBss();
         public RegisterForm()
         {
             InitializeComponent();
         }
-         private void btnRegistrar_Click(object sender, EventArgs e)
+        private void btnRegistrar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -52,24 +52,25 @@ namespace UI
                 }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-         private void btnVolver_Click(object sender, EventArgs e)
+        private void btnVolver_Click(object sender, EventArgs e)
         {
-             this.Close();
+            this.Close();
         }
 
-         private bool RegistrarNuevoUsuario(string usuario, string password)
+        private bool RegistrarNuevoUsuario(string usuario, string password)
         {
             try
             {
-                var entity = new UsuarioEntity { 
-                    
+                var entity = new UsuarioEntity
+                {
+
                     Usuario = usuario,
                     Password = password
                 };
@@ -77,13 +78,23 @@ namespace UI
                 return true;
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RegisterForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblUsuario_Click(object sender, EventArgs e)
         {
 
         }

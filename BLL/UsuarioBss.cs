@@ -21,7 +21,7 @@ namespace BLL
                 {
                     var model =dao.getUser(entity.Usuario);
                     bool esValido = BCrypt.Net.BCrypt.Verify(entity.Password, model.Password);
-                    if (!esValido) throw new Exception("No se pudo realizar el inicion de sesón, verificar credenciales.");
+                    if (!esValido) throw new Exception("No se pudo realizar el inicion de sesión, verificar credenciales.");
                     scope.Complete();
                 }                   
 

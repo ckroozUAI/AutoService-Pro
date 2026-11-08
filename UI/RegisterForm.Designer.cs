@@ -40,80 +40,89 @@
             // 
             // txtUsuario
             // 
-            txtUsuario.Location = new Point(144, 33);
+            txtUsuario.Location = new Point(165, 37);
             txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(150, 23);
+            txtUsuario.Size = new Size(171, 25);
             txtUsuario.TabIndex = 0;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(144, 73);
+            txtPassword.Location = new Point(165, 83);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(150, 23);
+            txtPassword.Size = new Size(171, 25);
             txtPassword.TabIndex = 1;
             // 
             // btnRegistrar
             // 
-            btnRegistrar.Location = new Point(30, 154);
+            btnRegistrar.BackColor = SystemColors.MenuBar;
+            btnRegistrar.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            btnRegistrar.Location = new Point(34, 175);
             btnRegistrar.Name = "btnRegistrar";
-            btnRegistrar.Size = new Size(100, 30);
+            btnRegistrar.Size = new Size(114, 34);
             btnRegistrar.TabIndex = 2;
             btnRegistrar.Text = "Guardar";
-            btnRegistrar.UseVisualStyleBackColor = true;
+            btnRegistrar.UseVisualStyleBackColor = false;
             btnRegistrar.Click += btnRegistrar_Click;
             // 
             // btnVolver
             // 
-            btnVolver.Location = new Point(170, 154);
+            btnVolver.BackColor = SystemColors.MenuBar;
+            btnVolver.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            btnVolver.Location = new Point(194, 175);
             btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(100, 30);
+            btnVolver.Size = new Size(114, 34);
             btnVolver.TabIndex = 3;
             btnVolver.Text = "Volver";
-            btnVolver.UseVisualStyleBackColor = true;
+            btnVolver.UseVisualStyleBackColor = false;
             btnVolver.Click += btnVolver_Click;
             // 
             // lblUsuario
             // 
             lblUsuario.AutoSize = true;
-            lblUsuario.Location = new Point(30, 33);
+            lblUsuario.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            lblUsuario.Location = new Point(34, 37);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(50, 15);
+            lblUsuario.Size = new Size(59, 17);
             lblUsuario.TabIndex = 1;
             lblUsuario.Text = "Usuario:";
+            lblUsuario.Click += lblUsuario_Click;
             // 
             // lblPassword
             // 
             lblPassword.AutoSize = true;
-            lblPassword.Location = new Point(30, 73);
+            lblPassword.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            lblPassword.Location = new Point(34, 83);
             lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(70, 15);
+            lblPassword.Size = new Size(81, 17);
             lblPassword.TabIndex = 0;
             lblPassword.Text = "Contraseña:";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(30, 112);
+            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            label1.Location = new Point(34, 127);
             label1.Name = "label1";
-            label1.Size = new Size(108, 15);
+            label1.Size = new Size(127, 17);
             label1.TabIndex = 4;
             label1.Text = "Repetir contraseña:";
             label1.Click += label1_Click;
             // 
             // txtRepetirPassword
             // 
-            txtRepetirPassword.Location = new Point(144, 109);
+            txtRepetirPassword.Location = new Point(165, 124);
             txtRepetirPassword.Name = "txtRepetirPassword";
             txtRepetirPassword.PasswordChar = '*';
-            txtRepetirPassword.Size = new Size(150, 23);
+            txtRepetirPassword.Size = new Size(171, 25);
             txtRepetirPassword.TabIndex = 5;
             // 
             // RegisterForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(450, 214);
+            BackColor = SystemColors.ActiveCaption;
+            ClientSize = new Size(365, 243);
             Controls.Add(txtRepetirPassword);
             Controls.Add(label1);
             Controls.Add(lblPassword);
@@ -122,11 +131,13 @@
             Controls.Add(btnRegistrar);
             Controls.Add(txtPassword);
             Controls.Add(txtUsuario);
+            Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             Name = "RegisterForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Registro de Usuario";
+            Load += RegisterForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

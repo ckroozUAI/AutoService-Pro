@@ -30,24 +30,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            SuspendLayout();
-            // 
-            // LoginForm
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Name = "LoginForm";
-            Text = "LoginForm";
-            ResumeLayout(false);
-
-
             txtUsuario = new TextBox();
             txtPassword = new TextBox();
             btnIngresar = new Button();
             btnRegistrarse = new Button();
-            lblUsuario = new Label();
-            lblPassword = new Label();
+            label1 = new Label();
+            label2 = new Label();
             SuspendLayout();
             // 
             // txtUsuario
@@ -67,54 +55,67 @@
             // 
             // btnIngresar
             // 
+            btnIngresar.BackColor = SystemColors.MenuBar;
+            btnIngresar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnIngresar.Location = new Point(30, 115);
             btnIngresar.Name = "btnIngresar";
             btnIngresar.Size = new Size(100, 30);
             btnIngresar.TabIndex = 2;
             btnIngresar.Text = "Ingresar";
-            btnIngresar.UseVisualStyleBackColor = true;
+            btnIngresar.UseVisualStyleBackColor = false;
             btnIngresar.Click += btnIngresar_Click;
             // 
             // btnRegistrarse
             // 
+            btnRegistrarse.BackColor = SystemColors.MenuBar;
+            btnRegistrarse.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnRegistrarse.Location = new Point(170, 115);
             btnRegistrarse.Name = "btnRegistrarse";
             btnRegistrarse.Size = new Size(100, 30);
             btnRegistrarse.TabIndex = 3;
             btnRegistrarse.Text = "Registrarse";
-            btnRegistrarse.UseVisualStyleBackColor = true;
+            btnRegistrarse.UseVisualStyleBackColor = false;
             btnRegistrarse.Click += btnRegistrarse_Click;
             // 
-            // lblUsuario
+            // label1
             // 
-            lblUsuario.AutoSize = true;
-            lblUsuario.Location = new Point(30, 33);
-            lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(50, 15);
-            lblUsuario.Text = "Usuario:";
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            label1.Location = new Point(30, 73);
+            label1.Name = "label1";
+            label1.Size = new Size(81, 17);
+            label1.TabIndex = 4;
+            label1.Text = "Contraseña:";
             // 
-            // lblPassword
+            // label2
             // 
-            lblPassword.AutoSize = true;
-            lblPassword.Location = new Point(30, 73);
-            lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(70, 15);
-            lblPassword.Text = "Contraseña:";
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            label2.Location = new Point(30, 33);
+            label2.Name = "label2";
+            label2.Size = new Size(59, 17);
+            label2.TabIndex = 5;
+            label2.Text = "Usuario:";
             // 
             // LoginForm
             // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(300, 175);
-            Controls.Add(lblPassword);
-            Controls.Add(lblUsuario);
+            Controls.Add(label1);
+            Controls.Add(label2);
             Controls.Add(btnRegistrarse);
             Controls.Add(btnIngresar);
             Controls.Add(txtPassword);
             Controls.Add(txtUsuario);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
+            MinimizeBox = false;
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Iniciar Sesión";
+            Load += LoginForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -125,9 +126,7 @@
         private TextBox txtPassword;
         private Button btnIngresar;
         private Button btnRegistrarse;
-        private Label lblUsuario;
-        private Label lblPassword;
-    
-
-     }
+        private Label label1;
+        private Label label2;
+    }
 }
