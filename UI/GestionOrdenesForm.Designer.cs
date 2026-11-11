@@ -41,7 +41,6 @@
             dgvOrdenes.Name = "dgvOrdenes";
             dgvOrdenes.Size = new Size(556, 253);
             dgvOrdenes.TabIndex = 0;
-            dgvOrdenes.CellContentClick += dgvOrdenes_CellContentClick;
             // 
             // btnCerrarOrden
             // 

@@ -75,6 +75,8 @@ namespace UI
                 MessageBox.Show(ex.Message, "Validación de Negocio",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
+
         }
     }
 }
