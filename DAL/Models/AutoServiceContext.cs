@@ -22,6 +22,9 @@ public partial class AutoServiceContext : DbContext
 
     public virtual DbSet<VehiculoModel> Vehiculo { get; set; }
 
+    public virtual DbSet<RepuestoModel> Repuesto { get; set; }
+
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)=> optionsBuilder.UseSqlServer(ConeccionString.getConectionString());
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -115,6 +118,28 @@ public partial class AutoServiceContext : DbContext
             entity.HasOne(d => d.Cliente).WithMany(p => p.Vehiculos)
                 .HasForeignKey(d => d.IdCliente)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+        });
+
+        modelBuilder.Entity<RepuestoModel>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.HasIndex(e => e.Codigo).IsUnique();
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Codigo)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("CODIGO");
+            entity.Property(e => e.Descripcion)
+                .HasMaxLength(150)
+                .IsUnicode(false)
+                .HasColumnName("DESCRIPCION");
+            entity.Property(e => e.Precio)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("PRECIO");
+            entity.Property(e => e.StockFisico)
+                .HasColumnName("STOCK_FISICO");
         });
 
         OnModelCreatingPartial(modelBuilder);
