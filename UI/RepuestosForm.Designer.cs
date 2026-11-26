@@ -39,6 +39,7 @@
             label3 = new Label();
             dgvRepuestos = new DataGridView();
             btnLimpiar = new Button();
+            btnMenu = new Button();
             ((System.ComponentModel.ISupportInitialize)numPrecio).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numStock).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvRepuestos).BeginInit();
@@ -136,11 +137,22 @@
             btnLimpiar.UseVisualStyleBackColor = true;
             btnLimpiar.Click += btnLimpiar_Click;
             // 
+            // btnMenu
+            // 
+            btnMenu.Location = new Point(28, 409);
+            btnMenu.Name = "btnMenu";
+            btnMenu.Size = new Size(98, 23);
+            btnMenu.TabIndex = 11;
+            btnMenu.Text = "Volver al Menu";
+            btnMenu.UseVisualStyleBackColor = true;
+            btnMenu.Click += btnMenu_Click;
+            // 
             // RepuestosForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnMenu);
             Controls.Add(btnLimpiar);
             Controls.Add(dgvRepuestos);
             Controls.Add(label3);
@@ -175,5 +187,6 @@
         private Label label3;
         private DataGridView dgvRepuestos;
         private Button btnLimpiar;
+        private Button btnMenu;
     }
 }

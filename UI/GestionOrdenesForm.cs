@@ -8,10 +8,12 @@ namespace UI
     public partial class GestionOrdenesForm : Form
     {
         private OrdenServicioBss ordenBss = new OrdenServicioBss();
+        private readonly Form _menuForm;
 
-        public GestionOrdenesForm()
+        public GestionOrdenesForm(Form menuForm)
         {
             InitializeComponent();
+            _menuForm = menuForm;
         }
 
         private void GestionOrdenesForm_Load(object sender, EventArgs e)
@@ -74,6 +76,11 @@ namespace UI
             {
                 MessageBox.Show(ex.Message, "Validación RN4", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
+        }
+
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            NavegacionHelper.VolverAMenu(this, _menuForm);
         }
     }
 }

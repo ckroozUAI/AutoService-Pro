@@ -31,6 +31,7 @@
             dgvOrdenes = new DataGridView();
             btnFinalizar = new Button();
             btnEliminar = new Button();
+            btnMenu = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvOrdenes).BeginInit();
             SuspendLayout();
             // 
@@ -62,11 +63,22 @@
             btnEliminar.UseVisualStyleBackColor = true;
             btnEliminar.Click += btnEliminar_Click;
             // 
+            // btnMenu
+            // 
+            btnMenu.Location = new Point(351, 418);
+            btnMenu.Name = "btnMenu";
+            btnMenu.Size = new Size(117, 23);
+            btnMenu.TabIndex = 3;
+            btnMenu.Text = "Volver al Menu";
+            btnMenu.UseVisualStyleBackColor = true;
+            btnMenu.Click += btnMenu_Click;
+            // 
             // GestionOrdenesForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnMenu);
             Controls.Add(btnEliminar);
             Controls.Add(btnFinalizar);
             Controls.Add(dgvOrdenes);
@@ -82,5 +94,6 @@
         private DataGridView dgvOrdenes;
         private Button btnFinalizar;
         private Button btnEliminar;
+        private Button btnMenu;
     }
 }

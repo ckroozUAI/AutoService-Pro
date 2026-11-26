@@ -153,12 +153,12 @@ public partial class AutoServiceContext : DbContext
 
         modelBuilder.Entity<RepuestoModel>(entity =>
         {
-            entity.HasKey(e => e.IdRepuesto);
+            entity.HasKey(e => e.Id);
             entity.ToTable("REPUESTO");
 
             entity.HasIndex(e => e.Codigo).IsUnique();
 
-            entity.Property(e => e.IdRepuesto).HasColumnName("ID_REPUESTO");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Codigo)
                 .HasMaxLength(50)
                 .IsUnicode(false)

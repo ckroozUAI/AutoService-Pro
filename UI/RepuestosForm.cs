@@ -8,10 +8,12 @@ namespace UI
     public partial class RepuestosForm : Form
     {
         private RepuestoBss repuestoBss = new RepuestoBss();
+        private readonly Form _menuForm;
 
-        public RepuestosForm()
+        public RepuestosForm(Form menuForm)
         {
             InitializeComponent();
+            _menuForm = menuForm;
         }
 
         private void RepuestosForm_Load(object sender, EventArgs e)
@@ -24,7 +26,7 @@ namespace UI
             try
             {
                 dgvRepuestos.DataSource = null;
-                dgvRepuestos.DataSource = repuestoBss.getAll();
+                dgvRepuestos.DataSource = repuestoBss.ObtenerTodos();
             }
             catch (Exception ex)
             {
@@ -44,7 +46,7 @@ namespace UI
                     StockFisico = (int)numStock.Value
                 };
 
-                repuestoBss.create(repuesto);
+                repuestoBss.RegistrarNuevoRepuesto(repuesto);
                 MessageBox.Show("Repuesto registrado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 LimpiarCampos();
@@ -68,6 +70,11 @@ namespace UI
             numPrecio.Value = 0;
             numStock.Value = 0;
             txtCodigo.Focus();
+        }
+
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            NavegacionHelper.VolverAMenu(this, _menuForm);
         }
     }
 }
