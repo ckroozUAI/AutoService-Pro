@@ -63,5 +63,25 @@ namespace DAL
                 throw ex;
             }
         }
+
+        public UsuarioEntity getValidUser(string user)
+        {
+            try
+            {
+                using (var dbContext = new AutoServiceContext())
+                {
+
+                    var model = dbContext.Usuario.FirstOrDefault(u => u.Usuario.Equals(user));
+                    if (model != null) return UsuarioMapper.ToEntity(model);
+
+                    return null;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

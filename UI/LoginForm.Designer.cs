@@ -30,6 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             txtUsuario = new TextBox();
             txtPassword = new TextBox();
             btnIngresar = new Button();
@@ -110,6 +111,7 @@
             Controls.Add(txtPassword);
             Controls.Add(txtUsuario);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "LoginForm";

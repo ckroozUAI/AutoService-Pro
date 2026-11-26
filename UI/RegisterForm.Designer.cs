@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterForm));
             txtUsuario = new TextBox();
             txtPassword = new TextBox();
             btnRegistrar = new Button();
@@ -133,6 +134,7 @@
             Controls.Add(txtUsuario);
             Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "RegisterForm";
             StartPosition = FormStartPosition.CenterScreen;
