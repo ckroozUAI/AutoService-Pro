@@ -7,9 +7,16 @@ namespace UI
 {
     public partial class GestionOrdenesForm : Form
     {
-        public GestionOrdenesForm()
+        private readonly Form _menuForm;
+
+        public GestionOrdenesForm(Form  menuForm)
         {
             InitializeComponent();
+            _menuForm = menuForm;
+        }
+        private void btnVolverMenu_Click(object sender, EventArgs e)
+        {
+            NavegacionHelper.VolverAMenu(this, _menuForm);
         }
 
         private void GestionOrdenesForm_Load(object sender, EventArgs e)
