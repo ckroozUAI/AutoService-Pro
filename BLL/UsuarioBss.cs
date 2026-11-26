@@ -38,7 +38,7 @@ namespace BLL
             {
                 using (var scope = new TransactionScope())
                 {
-                    var model = dao.getUser(entity.Usuario);
+                    var model = dao.getValidUser(entity.Usuario);
                     if (model != null) throw new Exception("Ese nombre para usuario no puede utilizarse, por favor reemplazelo por otro.");
                     entity.Password = BCrypt.Net.BCrypt.HashPassword(entity.Password);
                     dao.create(entity);

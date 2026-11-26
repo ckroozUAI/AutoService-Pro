@@ -16,13 +16,15 @@ namespace UI
     {
         private ClienteBss clienteBss = new ClienteBss();
         private VehiculoBss vehiculoBss = new VehiculoBss();
+        private readonly Form _menuForm;
 
         private int clienteId, vehiculoId;
         private bool cargandoClientes, cargandoVehiculos;
 
-        public ClientesVehiculosForm()
+        public ClientesVehiculosForm(Form menuForm)
         {
             InitializeComponent();
+            _menuForm = menuForm;
         }
 
         private void ClientesVehiculosForm_Load(object sender, EventArgs e)
@@ -30,7 +32,7 @@ namespace UI
             CargarClientes();
         }
 
-        
+
 
         private void CargarClientes(int seleccionarId = 0)
         {
@@ -292,6 +294,16 @@ namespace UI
         private void MostrarError(Exception ex)
         {
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btnVolverMenu_Click_1(object sender, EventArgs e)
+        {
+            NavegacionHelper.VolverAMenu(this, _menuForm);
+        }
+
+        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

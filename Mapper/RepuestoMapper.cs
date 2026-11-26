@@ -1,5 +1,10 @@
 ﻿using Entities;
 using Entities.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Mapper
 {
@@ -7,11 +12,9 @@ namespace Mapper
     {
         public static RepuestoEntity ToEntity(RepuestoModel model)
         {
-            if (model == null) return null;
-
             return new RepuestoEntity
             {
-                IdRepuesto = model.IdRepuesto,
+                Id = model.Id,
                 Codigo = model.Codigo,
                 Descripcion = model.Descripcion,
                 Precio = model.Precio,
@@ -21,11 +24,9 @@ namespace Mapper
 
         public static RepuestoModel ToModel(RepuestoEntity entity)
         {
-            if (entity == null) return null;
-
             return new RepuestoModel
             {
-                IdRepuesto = entity.IdRepuesto,
+                Id = entity.Id,
                 Codigo = entity.Codigo,
                 Descripcion = entity.Descripcion,
                 Precio = entity.Precio,

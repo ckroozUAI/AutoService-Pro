@@ -1,6 +1,5 @@
 ﻿using DAL;
 using Entities;
-using System;
 using System.Collections.Generic;
 using System.Transactions;
 
@@ -10,45 +9,59 @@ namespace BLL
     {
         private RepuestoDao dao = new RepuestoDao();
 
-        public List<RepuestoEntity> getAll()
+        public List<RepuestoEntity> ObtenerTodos()
         {
             try
             {
                 return dao.getAll();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
         }
 
-        public void create(RepuestoEntity entity)
+        public void RegistrarNuevoRepuesto(RepuestoEntity entity)
+        {
+            try
+            {
+                entity.Codigo = (entity.Codigo ?? "").Trim();
+                entity.Descripcion = (entity.Descripcion ?? "").Trim();
+
+                if (entity.Codigo == "") throw new Exception("El código del repuesto es obligatorio.");
+                if (entity.Descripcion == "") throw new Exception("La descripción del repuesto es obligatoria.");
+                if (entity.Precio < 0) throw new Exception("El precio no puede ser negativo.");
+                if (entity.StockFisico < 0) throw new Exception("El stock físico no puede ser negativo.");
+
+                using (var scope = new TransactionScope())
+                {
+                    var existente = dao.getByCodigo(entity.Codigo);
+                    if (existente != null && existente.Id != entity.Id)
+                        throw new Exception("Ya existe un repuesto con ese código.");
+
+                    if (entity.Id == 0) dao.create(entity);
+                    else dao.update(entity);
+
+                    scope.Complete();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public void EliminarRepuesto(int id)
         {
             try
             {
                 using (var scope = new TransactionScope())
                 {
-                    if (string.IsNullOrWhiteSpace(entity.Codigo))
-                        throw new Exception("El código del repuesto es obligatorio.");
-
-                    if (string.IsNullOrWhiteSpace(entity.Descripcion))
-                        throw new Exception("La descripción del repuesto es obligatoria.");
-
-                    if (entity.Precio <= 0)
-                        throw new Exception("El precio debe ser mayor a cero.");
-
-                    if (entity.StockFisico < 0)
-                        throw new Exception("El stock físico no puede ser negativo.");
-
-                    var existente = dao.getByCodigo(entity.Codigo);
-                    if (existente != null)
-                        throw new Exception("Ya existe un repuesto registrado con ese código.");
-
-                    dao.create(entity);
+                    dao.delete(id);
                     scope.Complete();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
