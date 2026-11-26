@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using BLL;
+﻿using BLL;
 using Entities;
+using System;
+using System.Windows.Forms;
 
 namespace UI
 {
     public partial class RepuestosForm : Form
     {
-        // Instancia de la capa de negocio
-        private RepuestoBss bss = new RepuestoBss();
-        private readonly Form _menuForm;
+        private RepuestoBss repuestoBss = new RepuestoBss();
 
-        public RepuestosForm(Form menuForm)
+        public RepuestosForm()
         {
             InitializeComponent();
-            _menuForm = menuForm;
-        } 
+        }
 
         private void RepuestosForm_Load(object sender, EventArgs e)
         {
@@ -27,31 +23,42 @@ namespace UI
         {
             try
             {
-                // --- 1. AGREGAMOS ESTE BLOQUE PARA CREAR LAS COLUMNAS SI NO EXISTEN ---
-                if (dgvRepuestos.Columns.Count == 0)
-                {
-                    dgvRepuestos.Columns.Add("Codigo", "Código");
-                    dgvRepuestos.Columns.Add("Descripcion", "Descripción");
-                    dgvRepuestos.Columns.Add("Precio", "Precio");
-                    dgvRepuestos.Columns.Add("StockFisico", "Stock Físico");
-                }
-                // ----------------------------------------------------------------------
-
-                // 2. Limpiamos las filas viejas (no las columnas)
-                dgvRepuestos.Rows.Clear();
-
-                // 3. Traemos los datos de la BLL
-                List<RepuestoEntity> lista = bss.ObtenerTodos();
-
-                foreach (var repuesto in lista)
-                {
-                    dgvRepuestos.Rows.Add(repuesto.Codigo, repuesto.Descripcion, repuesto.Precio, repuesto.StockFisico);
-                }
+                dgvRepuestos.DataSource = null;
+                dgvRepuestos.DataSource = repuestoBss.getAll();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar la grilla: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al cargar repuestos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var repuesto = new RepuestoEntity
+                {
+                    Codigo = txtCodigo.Text.Trim(),
+                    Descripcion = txtDescripcion.Text.Trim(),
+                    Precio = numPrecio.Value,
+                    StockFisico = (int)numStock.Value
+                };
+
+                repuestoBss.create(repuesto);
+                MessageBox.Show("Repuesto registrado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                LimpiarCampos();
+                CargarGrilla();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
         }
 
         private void LimpiarCampos()
@@ -60,54 +67,7 @@ namespace UI
             txtDescripcion.Clear();
             numPrecio.Value = 0;
             numStock.Value = 0;
-
-            // Devuelve el cursor al primer cuadro de texto
             txtCodigo.Focus();
-        }
-
-        private void btnGuardar_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                // 1. Validamos que no falten datos básicos
-                if (string.IsNullOrWhiteSpace(txtCodigo.Text) || string.IsNullOrWhiteSpace(txtDescripcion.Text))
-                {
-                    MessageBox.Show("Por favor, complete el código y la descripción.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // 2. Armamos la entidad con los datos de la pantalla
-                RepuestoEntity nuevoRepuesto = new RepuestoEntity();
-                nuevoRepuesto.Codigo = txtCodigo.Text;
-                nuevoRepuesto.Descripcion = txtDescripcion.Text;
-                nuevoRepuesto.Precio = numPrecio.Value;
-                nuevoRepuesto.StockFisico = (int)numStock.Value;
-
-                // 3. Enviamos a la capa BLL para que aplique reglas y guarde en SQL
-                bss.RegistrarNuevoRepuesto(nuevoRepuesto);
-
-                // 4. Lo agregamos visualmente a la grilla para que el usuario lo vea
-                dgvRepuestos.Rows.Add(nuevoRepuesto.Codigo, nuevoRepuesto.Descripcion, nuevoRepuesto.Precio, nuevoRepuesto.StockFisico);
-
-                // 5. Limpiamos las cajas para el siguiente registro
-                LimpiarCampos();
-
-                MessageBox.Show("Repuesto guardado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al guardar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnLimpiar_Click_1(object sender, EventArgs e)
-        {
-            LimpiarCampos();
-        }
-
-        private void btnVolverMenu_Click_1(object sender, EventArgs e)
-        {
-            NavegacionHelper.VolverAMenu(this, _menuForm);
         }
     }
 }

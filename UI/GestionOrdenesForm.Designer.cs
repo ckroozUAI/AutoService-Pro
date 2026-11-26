@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             dgvOrdenes = new DataGridView();
-            btnCerrarOrden = new Button();
-            btnAnularOrden = new Button();
+            btnFinalizar = new Button();
+            btnEliminar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvOrdenes).BeginInit();
             SuspendLayout();
             // 
@@ -39,36 +39,36 @@
             dgvOrdenes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvOrdenes.Location = new Point(12, 12);
             dgvOrdenes.Name = "dgvOrdenes";
-            dgvOrdenes.Size = new Size(556, 253);
+            dgvOrdenes.Size = new Size(776, 323);
             dgvOrdenes.TabIndex = 0;
             // 
-            // btnCerrarOrden
+            // btnFinalizar
             // 
-            btnCerrarOrden.Location = new Point(83, 325);
-            btnCerrarOrden.Name = "btnCerrarOrden";
-            btnCerrarOrden.Size = new Size(164, 23);
-            btnCerrarOrden.TabIndex = 1;
-            btnCerrarOrden.Text = "Finalizar Orden";
-            btnCerrarOrden.UseVisualStyleBackColor = true;
-            btnCerrarOrden.Click += btnCerrarOrden_Click;
+            btnFinalizar.Location = new Point(12, 341);
+            btnFinalizar.Name = "btnFinalizar";
+            btnFinalizar.Size = new Size(376, 60);
+            btnFinalizar.TabIndex = 1;
+            btnFinalizar.Text = "Finalizar";
+            btnFinalizar.UseVisualStyleBackColor = true;
+            btnFinalizar.Click += btnFinalizar_Click;
             // 
-            // btnAnularOrden
+            // btnEliminar
             // 
-            btnAnularOrden.Location = new Point(321, 325);
-            btnAnularOrden.Name = "btnAnularOrden";
-            btnAnularOrden.Size = new Size(164, 23);
-            btnAnularOrden.TabIndex = 2;
-            btnAnularOrden.Text = "Anular Orden";
-            btnAnularOrden.UseVisualStyleBackColor = true;
-            btnAnularOrden.Click += btnAnularOrden_Click;
+            btnEliminar.Location = new Point(432, 341);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(356, 60);
+            btnEliminar.TabIndex = 2;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // GestionOrdenesForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(580, 384);
-            Controls.Add(btnAnularOrden);
-            Controls.Add(btnCerrarOrden);
+            ClientSize = new Size(800, 450);
+            Controls.Add(btnEliminar);
+            Controls.Add(btnFinalizar);
             Controls.Add(dgvOrdenes);
             Name = "GestionOrdenesForm";
             Text = "GestionOrdenesForm";
@@ -80,7 +80,7 @@
         #endregion
 
         private DataGridView dgvOrdenes;
-        private Button btnCerrarOrden;
-        private Button btnAnularOrden;
+        private Button btnFinalizar;
+        private Button btnEliminar;
     }
 }
