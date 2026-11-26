@@ -10,6 +10,7 @@ namespace UI
 {
     public partial class GestionOrdenesForm : Form
     {
+        private OrdenServicioBss ordenBss = new OrdenServicioBss();
         private readonly Form _menuForm;
         private readonly OrdenBss _ordenBss = new OrdenBss();
         private List<OrdenTrabajoEntity> _listaOrdenes = new List<OrdenTrabajoEntity>();
@@ -163,14 +164,21 @@ namespace UI
             dgvOrdenes.DataSource = _listaOrdenes;
         }
 
-        private void btnCerrarOrden_Click(object sender, EventArgs e)
+        private void CargarGrilla()
         {
             if (dgvOrdenes.CurrentRow == null)
             {
-                MessageBox.Show("Por favor, seleccione una orden de la lista.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                dgvOrdenes.DataSource = null;
+                dgvOrdenes.DataSource = ordenBss.getAll();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar órdenes: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        private void btnFinalizar_Click(object sender, EventArgs e)
+        {
             try
             {
                 var ordenActual = (OrdenTrabajoEntity)dgvOrdenes.CurrentRow.DataBoundItem;
@@ -195,22 +203,16 @@ namespace UI
             }
         }
 
-        private void btnAnularOrden_Click(object sender, EventArgs e)
+        private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (dgvOrdenes.CurrentRow == null)
-            {
-                MessageBox.Show("Por favor, seleccione una orden de la lista.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             try
             {
                 var ordenActual = (OrdenTrabajoEntity)dgvOrdenes.CurrentRow.DataBoundItem;
 
                 _ordenBss.AnularOrden(ordenActual);
 
-                MessageBox.Show("La orden fue anulada correctamente.", "Éxito",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var orden = (OrdenServicioEntity)dgvOrdenes.CurrentRow.DataBoundItem;
+                ordenBss.eliminarOrden(orden.IdOrden);
 
                 RefrescarGrilla();
             }
