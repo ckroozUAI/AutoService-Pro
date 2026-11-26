@@ -15,7 +15,7 @@ namespace UI
         public MenuForm()
         {
             InitializeComponent();
-        } 
+        }
 
         private void btnRepuestos_Click(object sender, EventArgs e)
         {
@@ -39,6 +39,16 @@ namespace UI
         private void btnOrdenes_Click(object sender, EventArgs e)
         {
             NavegacionHelper.AbrirYEsperar(this, new GestionOrdenesForm(this));
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClientesVehiculos_Click(object sender, EventArgs e)
+        {
+            NavegacionHelper.AbrirYEsperar(this, new ClientesVehiculosForm(this));
         }
     }
 }

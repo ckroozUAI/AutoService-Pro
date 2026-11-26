@@ -25,7 +25,7 @@ namespace UI
         {
             InitializeComponent();
             _menuForm = menuForm;
-        } 
+        }
 
         private void ClientesVehiculosForm_Load(object sender, EventArgs e)
         {
@@ -299,6 +299,11 @@ namespace UI
         private void btnVolverMenu_Click_1(object sender, EventArgs e)
         {
             NavegacionHelper.VolverAMenu(this, _menuForm);
+        }
+
+        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

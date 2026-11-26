@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientesVehiculosForm));
             gbClientes = new GroupBox();
+            btnVolverMenu = new Button();
             dgvClientes = new DataGridView();
             btnEliminarCliente = new Button();
             btnGuardarCliente = new Button();
@@ -58,7 +60,6 @@
             lblMarca = new Label();
             txtPatente = new TextBox();
             lblPatente = new Label();
-            btnVolverMenu = new Button();
             gbClientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
             gbVehiculos.SuspendLayout();
@@ -91,6 +92,16 @@
             gbClientes.TabStop = false;
             gbClientes.Text = "Clientes";
             // 
+            // btnVolverMenu
+            // 
+            btnVolverMenu.Location = new Point(824, 24);
+            btnVolverMenu.Name = "btnVolverMenu";
+            btnVolverMenu.Size = new Size(120, 23);
+            btnVolverMenu.TabIndex = 15;
+            btnVolverMenu.Text = "Volver al Menu";
+            btnVolverMenu.UseVisualStyleBackColor = true;
+            btnVolverMenu.Click += btnVolverMenu_Click_1;
+            // 
             // dgvClientes
             // 
             dgvClientes.AllowUserToAddRows = false;
@@ -107,6 +118,7 @@
             dgvClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvClientes.Size = new Size(932, 170);
             dgvClientes.TabIndex = 10;
+            dgvClientes.CellContentClick += dgvClientes_CellContentClick;
             dgvClientes.SelectionChanged += dgvClientes_SelectionChanged;
             // 
             // btnEliminarCliente
@@ -374,16 +386,6 @@
             lblPatente.TabIndex = 10;
             lblPatente.Text = "Patente:";
             // 
-            // btnVolverMenu
-            // 
-            btnVolverMenu.Location = new Point(824, 24);
-            btnVolverMenu.Name = "btnVolverMenu";
-            btnVolverMenu.Size = new Size(120, 23);
-            btnVolverMenu.TabIndex = 15;
-            btnVolverMenu.Text = "Volver al Menu";
-            btnVolverMenu.UseVisualStyleBackColor = true;
-            btnVolverMenu.Click += btnVolverMenu_Click_1;
-            // 
             // ClientesVehiculosForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -391,6 +393,7 @@
             ClientSize = new Size(980, 665);
             Controls.Add(gbVehiculos);
             Controls.Add(gbClientes);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(996, 704);
             Name = "ClientesVehiculosForm";
             StartPosition = FormStartPosition.CenterScreen;

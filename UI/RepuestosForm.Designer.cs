@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RepuestosForm));
             txtCodigo = new TextBox();
             txtDescripcion = new TextBox();
             numPrecio = new NumericUpDown();
@@ -141,7 +142,7 @@
             // 
             // btnVolverMenu
             // 
-            btnVolverMenu.Location = new Point(591, 260);
+            btnVolverMenu.Location = new Point(591, 250);
             btnVolverMenu.Name = "btnVolverMenu";
             btnVolverMenu.Size = new Size(197, 23);
             btnVolverMenu.TabIndex = 11;
@@ -166,6 +167,7 @@
             Controls.Add(numPrecio);
             Controls.Add(txtDescripcion);
             Controls.Add(txtCodigo);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "RepuestosForm";
             Text = "RepuestosForm";
             Load += RepuestosForm_Load;
