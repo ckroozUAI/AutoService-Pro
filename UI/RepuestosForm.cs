@@ -10,11 +10,13 @@ namespace UI
     {
         // Instancia de la capa de negocio
         private RepuestoBss bss = new RepuestoBss();
+        private readonly Form _menuForm;
 
-        public RepuestosForm()
+        public RepuestosForm(Form menuForm)
         {
             InitializeComponent();
-        }
+            _menuForm = menuForm;
+        } 
 
         private void RepuestosForm_Load(object sender, EventArgs e)
         {
@@ -101,6 +103,11 @@ namespace UI
         private void btnLimpiar_Click_1(object sender, EventArgs e)
         {
             LimpiarCampos();
+        }
+
+        private void btnVolverMenu_Click_1(object sender, EventArgs e)
+        {
+            NavegacionHelper.VolverAMenu(this, _menuForm);
         }
     }
 }

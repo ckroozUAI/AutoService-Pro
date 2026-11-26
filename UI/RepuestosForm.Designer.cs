@@ -39,6 +39,7 @@
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
+            btnVolverMenu = new Button();
             ((System.ComponentModel.ISupportInitialize)numPrecio).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numStock).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvRepuestos).BeginInit();
@@ -138,11 +139,22 @@
             label4.TabIndex = 10;
             label4.Text = "Stock:";
             // 
+            // btnVolverMenu
+            // 
+            btnVolverMenu.Location = new Point(591, 260);
+            btnVolverMenu.Name = "btnVolverMenu";
+            btnVolverMenu.Size = new Size(197, 23);
+            btnVolverMenu.TabIndex = 11;
+            btnVolverMenu.Text = "Volver al Menu";
+            btnVolverMenu.UseVisualStyleBackColor = true;
+            btnVolverMenu.Click += btnVolverMenu_Click_1;
+            // 
             // RepuestosForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 284);
+            Controls.Add(btnVolverMenu);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -177,5 +189,6 @@
         private Label label2;
         private Label label3;
         private Label label4;
+        private Button btnVolverMenu;
     }
 }

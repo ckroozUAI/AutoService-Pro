@@ -15,7 +15,7 @@ namespace UI
              
             if (loginForm.ShowDialog() == DialogResult.OK)
             {
-                 Application.Run(new RepuestosForm());
+                 Application.Run(new MenuForm());
             }
             else
             {
