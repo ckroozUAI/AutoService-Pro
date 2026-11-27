@@ -39,69 +39,96 @@
             // 
             // btnRepuestos
             // 
-            btnRepuestos.Location = new Point(511, 63);
+            btnRepuestos.BackColor = Color.FromArgb(0, 114, 198);
+            btnRepuestos.Cursor = Cursors.Hand;
+            btnRepuestos.FlatStyle = FlatStyle.Flat;
+            btnRepuestos.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnRepuestos.ForeColor = Color.White;
+            btnRepuestos.Location = new Point(484, 32);
+            btnRepuestos.Margin = new Padding(3, 4, 3, 4);
             btnRepuestos.Name = "btnRepuestos";
-            btnRepuestos.Size = new Size(263, 53);
+            btnRepuestos.Size = new Size(301, 71);
             btnRepuestos.TabIndex = 0;
-            btnRepuestos.Text = "Repuestos";
-            btnRepuestos.UseVisualStyleBackColor = true;
+            btnRepuestos.Text = "Catálogo de Repuestos";
+            btnRepuestos.UseVisualStyleBackColor = false;
             btnRepuestos.Click += btnRepuestos_Click_1;
             // 
             // btnOrdenes
             // 
-            btnOrdenes.Location = new Point(511, 149);
+            btnOrdenes.BackColor = Color.FromArgb(0, 114, 198);
+            btnOrdenes.Cursor = Cursors.Hand;
+            btnOrdenes.FlatStyle = FlatStyle.Flat;
+            btnOrdenes.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnOrdenes.ForeColor = Color.White;
+            btnOrdenes.Location = new Point(484, 128);
+            btnOrdenes.Margin = new Padding(3, 4, 3, 4);
             btnOrdenes.Name = "btnOrdenes";
-            btnOrdenes.Size = new Size(263, 53);
+            btnOrdenes.Size = new Size(301, 71);
             btnOrdenes.TabIndex = 1;
-            btnOrdenes.Text = "Ordenes de Trabajo";
-            btnOrdenes.UseVisualStyleBackColor = true;
+            btnOrdenes.Text = "Órdenes de Trabajo";
+            btnOrdenes.UseVisualStyleBackColor = false;
             btnOrdenes.Click += btnOrdenes_Click;
             // 
             // btnClientesVehiculos
             // 
-            btnClientesVehiculos.Location = new Point(511, 252);
+            btnClientesVehiculos.BackColor = Color.FromArgb(0, 114, 198);
+            btnClientesVehiculos.Cursor = Cursors.Hand;
+            btnClientesVehiculos.FlatStyle = FlatStyle.Flat;
+            btnClientesVehiculos.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnClientesVehiculos.ForeColor = Color.White;
+            btnClientesVehiculos.Location = new Point(484, 224);
+            btnClientesVehiculos.Margin = new Padding(3, 4, 3, 4);
             btnClientesVehiculos.Name = "btnClientesVehiculos";
-            btnClientesVehiculos.Size = new Size(263, 53);
+            btnClientesVehiculos.Size = new Size(301, 71);
             btnClientesVehiculos.TabIndex = 2;
-            btnClientesVehiculos.Text = "Clientes/Vehiculos";
-            btnClientesVehiculos.UseVisualStyleBackColor = true;
+            btnClientesVehiculos.Text = "Clientes / Vehículos";
+            btnClientesVehiculos.UseVisualStyleBackColor = false;
             btnClientesVehiculos.Click += btnClientesVehiculos_Click;
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = Color.White;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(3, 0);
+            pictureBox1.Location = new Point(-1, -1);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(476, 453);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.Size = new Size(463, 384);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(551, 415);
+            button1.BackColor = Color.Red;
+            button1.Cursor = Cursors.Hand;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(536, 324);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(168, 23);
+            button1.Size = new Size(192, 31);
             button1.TabIndex = 4;
-            button1.Text = "SALIR";
-            button1.UseVisualStyleBackColor = true;
+            button1.Text = "Salir";
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // MenuForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.GrayText;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.White;
+            ClientSize = new Size(810, 382);
             Controls.Add(button1);
             Controls.Add(pictureBox1);
             Controls.Add(btnClientesVehiculos);
             Controls.Add(btnOrdenes);
             Controls.Add(btnRepuestos);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             Name = "MenuForm";
-            Text = "MenuForm";
+            Text = "AutoService Pro - Menú Principal";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
