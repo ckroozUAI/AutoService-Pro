@@ -125,9 +125,9 @@ public partial class AutoServiceContext : DbContext
         modelBuilder.Entity<OrdenServicioModel>(entity =>
         {
             entity.HasKey(e => e.IdOrden);
-            entity.ToTable("ORDEN_SERVICIO");
+            entity.ToTable("ORDENSERVICIO");
 
-            entity.Property(e => e.IdOrden).HasColumnName("ID_ORDEN");
+            entity.Property(e => e.IdOrden).HasColumnName("ID");
             entity.Property(e => e.IdVehiculo).HasColumnName("ID_VEHICULO");
             entity.Property(e => e.IdTecnico).HasColumnName("ID_TECNICO");
             entity.Property(e => e.FechaIngreso)

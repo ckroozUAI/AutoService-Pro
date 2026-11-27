@@ -33,6 +33,7 @@
             btnOrdenes = new Button();
             btnClientesVehiculos = new Button();
             pictureBox1 = new PictureBox();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -77,12 +78,23 @@
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(551, 415);
+            button1.Name = "button1";
+            button1.Size = new Size(168, 23);
+            button1.TabIndex = 4;
+            button1.Text = "SALIR";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // MenuForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GrayText;
             ClientSize = new Size(800, 450);
+            Controls.Add(button1);
             Controls.Add(pictureBox1);
             Controls.Add(btnClientesVehiculos);
             Controls.Add(btnOrdenes);
@@ -100,5 +112,6 @@
         private Button btnOrdenes;
         private Button btnClientesVehiculos;
         private PictureBox pictureBox1;
+        private Button button1;
     }
 }

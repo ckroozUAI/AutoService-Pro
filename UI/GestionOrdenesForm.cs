@@ -84,11 +84,10 @@ namespace UI
             {
                 var ordenActual = (OrdenServicioEntity)dgvOrdenes.CurrentRow.DataBoundItem;
 
-                _ordenBss.AnularOrden(ordenActual);
+                _ordenBss.AnularOrden(ordenActual); 
 
-                var orden = (OrdenServicioEntity)dgvOrdenes.CurrentRow.DataBoundItem;
-               // _ordenBss.eliminarOrden(orden.IdOrden);
-
+                MessageBox.Show(
+                   $"Orden #{ordenActual.IdOrden} anulada con éxito.");
                 RefrescarGrilla();
             }
             catch (Exception ex)
