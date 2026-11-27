@@ -28,19 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RepuestosForm));
             txtCodigo = new TextBox();
             txtDescripcion = new TextBox();
-            numPrecio = new NumericUpDown();
-            numStock = new NumericUpDown();
             btnGuardar = new Button();
-            btnLimpiar = new Button();
-            dgvRepuestos = new DataGridView();
+            numPrecio = new NumericUpDown();
+            Label = new Label();
             label1 = new Label();
             label2 = new Label();
+            numStock = new NumericUpDown();
             label3 = new Label();
-            label4 = new Label();
-            btnVolverMenu = new Button();
+            dgvRepuestos = new DataGridView();
+            btnLimpiar = new Button();
+            btnMenu = new Button();
             ((System.ComponentModel.ISupportInitialize)numPrecio).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numStock).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvRepuestos).BeginInit();
@@ -48,126 +47,123 @@
             // 
             // txtCodigo
             // 
-            txtCodigo.Location = new Point(90, 53);
+            txtCodigo.Location = new Point(112, 12);
             txtCodigo.Name = "txtCodigo";
-            txtCodigo.Size = new Size(120, 23);
+            txtCodigo.Size = new Size(100, 23);
             txtCodigo.TabIndex = 0;
             // 
             // txtDescripcion
             // 
-            txtDescripcion.Location = new Point(90, 83);
+            txtDescripcion.Location = new Point(112, 41);
             txtDescripcion.Name = "txtDescripcion";
-            txtDescripcion.Size = new Size(120, 23);
+            txtDescripcion.Size = new Size(100, 23);
             txtDescripcion.TabIndex = 1;
-            // 
-            // numPrecio
-            // 
-            numPrecio.DecimalPlaces = 2;
-            numPrecio.Location = new Point(90, 130);
-            numPrecio.Name = "numPrecio";
-            numPrecio.Size = new Size(120, 23);
-            numPrecio.TabIndex = 2;
-            // 
-            // numStock
-            // 
-            numStock.Location = new Point(90, 159);
-            numStock.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
-            numStock.Name = "numStock";
-            numStock.Size = new Size(120, 23);
-            numStock.TabIndex = 3;
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(9, 221);
+            btnGuardar.Location = new Point(12, 159);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(75, 23);
-            btnGuardar.TabIndex = 4;
+            btnGuardar.Size = new Size(96, 23);
+            btnGuardar.TabIndex = 2;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
-            btnGuardar.Click += btnGuardar_Click_1;
+            btnGuardar.Click += btnGuardar_Click;
             // 
-            // btnLimpiar
+            // numPrecio
             // 
-            btnLimpiar.Location = new Point(135, 221);
-            btnLimpiar.Name = "btnLimpiar";
-            btnLimpiar.Size = new Size(75, 23);
-            btnLimpiar.TabIndex = 5;
-            btnLimpiar.Text = "Limpiar";
-            btnLimpiar.UseVisualStyleBackColor = true;
-            btnLimpiar.Click += btnLimpiar_Click_1;
+            numPrecio.Location = new Point(112, 70);
+            numPrecio.Name = "numPrecio";
+            numPrecio.Size = new Size(120, 23);
+            numPrecio.TabIndex = 3;
             // 
-            // dgvRepuestos
+            // Label
             // 
-            dgvRepuestos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRepuestos.Location = new Point(254, 53);
-            dgvRepuestos.Name = "dgvRepuestos";
-            dgvRepuestos.Size = new Size(534, 191);
-            dgvRepuestos.TabIndex = 6;
+            Label.AutoSize = true;
+            Label.Location = new Point(12, 15);
+            Label.Name = "Label";
+            Label.Size = new Size(46, 15);
+            Label.TabIndex = 4;
+            Label.Text = "Codigo";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 53);
+            label1.Location = new Point(12, 44);
             label1.Name = "label1";
-            label1.Size = new Size(49, 15);
-            label1.TabIndex = 7;
-            label1.Text = "Codigo:";
+            label1.Size = new Size(69, 15);
+            label1.TabIndex = 5;
+            label1.Text = "Descripcion";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 86);
+            label2.Location = new Point(12, 72);
             label2.Name = "label2";
-            label2.Size = new Size(72, 15);
-            label2.TabIndex = 8;
-            label2.Text = "Descripcion:";
+            label2.Size = new Size(40, 15);
+            label2.TabIndex = 6;
+            label2.Text = "Precio";
+            // 
+            // numStock
+            // 
+            numStock.Location = new Point(112, 99);
+            numStock.Name = "numStock";
+            numStock.Size = new Size(120, 23);
+            numStock.TabIndex = 7;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 132);
+            label3.Location = new Point(12, 101);
             label3.Name = "label3";
-            label3.Size = new Size(43, 15);
-            label3.TabIndex = 9;
-            label3.Text = "Precio:";
+            label3.Size = new Size(36, 15);
+            label3.TabIndex = 8;
+            label3.Text = "Stock";
             // 
-            // label4
+            // dgvRepuestos
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(12, 161);
-            label4.Name = "label4";
-            label4.Size = new Size(39, 15);
-            label4.TabIndex = 10;
-            label4.Text = "Stock:";
+            dgvRepuestos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvRepuestos.Location = new Point(289, 15);
+            dgvRepuestos.Name = "dgvRepuestos";
+            dgvRepuestos.Size = new Size(435, 332);
+            dgvRepuestos.TabIndex = 9;
             // 
-            // btnVolverMenu
+            // btnLimpiar
             // 
-            btnVolverMenu.Location = new Point(591, 250);
-            btnVolverMenu.Name = "btnVolverMenu";
-            btnVolverMenu.Size = new Size(197, 23);
-            btnVolverMenu.TabIndex = 11;
-            btnVolverMenu.Text = "Volver al Menu";
-            btnVolverMenu.UseVisualStyleBackColor = true;
-            btnVolverMenu.Click += btnVolverMenu_Click_1;
+            btnLimpiar.Location = new Point(116, 159);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.Size = new Size(96, 23);
+            btnLimpiar.TabIndex = 10;
+            btnLimpiar.Text = "Limpiar";
+            btnLimpiar.UseVisualStyleBackColor = true;
+            btnLimpiar.Click += btnLimpiar_Click;
+            // 
+            // btnMenu
+            // 
+            btnMenu.Location = new Point(28, 409);
+            btnMenu.Name = "btnMenu";
+            btnMenu.Size = new Size(98, 23);
+            btnMenu.TabIndex = 11;
+            btnMenu.Text = "Volver al Menu";
+            btnMenu.UseVisualStyleBackColor = true;
+            btnMenu.Click += btnMenu_Click;
             // 
             // RepuestosForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 284);
-            Controls.Add(btnVolverMenu);
-            Controls.Add(label4);
+            ClientSize = new Size(800, 450);
+            Controls.Add(btnMenu);
+            Controls.Add(btnLimpiar);
+            Controls.Add(dgvRepuestos);
             Controls.Add(label3);
+            Controls.Add(numStock);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(dgvRepuestos);
-            Controls.Add(btnLimpiar);
-            Controls.Add(btnGuardar);
-            Controls.Add(numStock);
+            Controls.Add(Label);
             Controls.Add(numPrecio);
+            Controls.Add(btnGuardar);
             Controls.Add(txtDescripcion);
             Controls.Add(txtCodigo);
-            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "RepuestosForm";
             Text = "RepuestosForm";
             Load += RepuestosForm_Load;
@@ -182,15 +178,15 @@
 
         private TextBox txtCodigo;
         private TextBox txtDescripcion;
-        private NumericUpDown numPrecio;
-        private NumericUpDown numStock;
         private Button btnGuardar;
-        private Button btnLimpiar;
-        private DataGridView dgvRepuestos;
+        private NumericUpDown numPrecio;
+        private Label Label;
         private Label label1;
         private Label label2;
+        private NumericUpDown numStock;
         private Label label3;
-        private Label label4;
-        private Button btnVolverMenu;
+        private DataGridView dgvRepuestos;
+        private Button btnLimpiar;
+        private Button btnMenu;
     }
 }

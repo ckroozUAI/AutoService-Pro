@@ -22,4 +22,5 @@ public partial class VehiculoModel
     public DateTime? FechaRegistro { get; set; }
 
     public virtual ClienteModel Cliente { get; set; } = null!;
+    public int Kilometraje { get; set; }
 }
