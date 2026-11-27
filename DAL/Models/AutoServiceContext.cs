@@ -22,10 +22,11 @@ public partial class AutoServiceContext : DbContext
 
     public virtual DbSet<VehiculoModel> Vehiculo { get; set; }
 
+    public virtual DbSet<OrdenServicioModel> OrdenServicio { get; set; }
+
     public virtual DbSet<RepuestoModel> Repuesto { get; set; }
 
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)=> optionsBuilder.UseSqlServer(ConeccionString.getConectionString());
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlServer(ConeccionString.getConectionString());
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -118,11 +119,44 @@ public partial class AutoServiceContext : DbContext
             entity.HasOne(d => d.Cliente).WithMany(p => p.Vehiculos)
                 .HasForeignKey(d => d.IdCliente)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+            entity.Property(e => e.Kilometraje).HasColumnName("KILOMETRAJE");
+        });
+
+        modelBuilder.Entity<OrdenServicioModel>(entity =>
+        {
+            entity.HasKey(e => e.IdOrden);
+            entity.ToTable("ORDENSERVICIO");
+
+            entity.Property(e => e.IdOrden).HasColumnName("ID");
+            entity.Property(e => e.IdVehiculo).HasColumnName("ID_VEHICULO");
+            entity.Property(e => e.IdTecnico).HasColumnName("ID_TECNICO");
+            entity.Property(e => e.FechaIngreso)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("FECHA_INGRESO");
+            entity.Property(e => e.FechaCierre)
+                .HasColumnType("datetime")
+                .HasColumnName("FECHA_CIERRE");
+            entity.Property(e => e.Estado)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("ESTADO");
+            entity.Property(e => e.ManoObra)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("MANO_OBRA");
+            entity.Property(e => e.TotalRepuestos)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("TOTAL_REPUESTOS");
+            entity.Property(e => e.Total)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("TOTAL");
+            entity.Property(e => e.Kilometraje).HasColumnName("KILOMETRAJE");
         });
 
         modelBuilder.Entity<RepuestoModel>(entity =>
         {
             entity.HasKey(e => e.Id);
+            entity.ToTable("REPUESTO");
 
             entity.HasIndex(e => e.Codigo).IsUnique();
 
@@ -138,8 +172,7 @@ public partial class AutoServiceContext : DbContext
             entity.Property(e => e.Precio)
                 .HasColumnType("decimal(18, 2)")
                 .HasColumnName("PRECIO");
-            entity.Property(e => e.StockFisico)
-                .HasColumnName("STOCK_FISICO");
+            entity.Property(e => e.StockFisico).HasColumnName("STOCK_FISICO");
         });
 
         OnModelCreatingPartial(modelBuilder);

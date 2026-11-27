@@ -21,7 +21,8 @@ namespace Mapper
                 Modelo = model.Modelo,
                 Anio = model.Anio,
                 Color = model.Color,
-                FechaRegistro = model.FechaRegistro
+                FechaRegistro = model.FechaRegistro,
+                Kilometraje=model.Kilometraje
             };
         }
 
@@ -36,7 +37,8 @@ namespace Mapper
                 Modelo = entity.Modelo,
                 Anio = entity.Anio,
                 Color = entity.Color,
-                FechaRegistro = entity.FechaRegistro
+                FechaRegistro = entity.FechaRegistro,
+                Kilometraje = entity.Kilometraje
             };
         }
     }

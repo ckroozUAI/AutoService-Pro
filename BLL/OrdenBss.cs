@@ -1,53 +1,120 @@
 ﻿using DAL;
 using Entities;
 using System;
+using System.Linq;
 using System.Transactions;
+using UI;
 
 namespace BLL
 {
     public class OrdenBss
     {
+        private readonly OrdenDao _ordenDao = new OrdenDao();
+        private readonly VehiculoBss _vehiculoBss= new VehiculoBss();
 
-        public void CerrarOrden(OrdenTrabajoEntity orden)
+        // RN1: Kilometraje >= al último histórico del vehículo
+        public void ValidarKilometrajeRN1(int idVehiculo, int kilometrajeDeclarado)
+        {
+            if (kilometrajeDeclarado < 0)
+                throw new Exception("RN1: El kilometraje no puede ser negativo.");
+
+            int ultimoKm = _ordenDao.ObtenerUltimoKilometraje(idVehiculo);
+
+            if (kilometrajeDeclarado < ultimoKm)
+                throw new Exception($"RN1: El kilometraje ingresado ({kilometrajeDeclarado} km) no puede ser menor al último histórico ({ultimoKm} km).");
+        }
+
+        // RN2: Cantidad requerida <= STOCK_FISICO en depósito
+        public void ValidarStockRN2(int idRepuesto, int cantidadRequerida, string nombreRepuesto = "")
+        {
+            if (cantidadRequerida <= 0)
+                throw new Exception("RN2: La cantidad requerida debe ser mayor a cero.");
+
+            int stockDisponible = _ordenDao.ObtenerStockActual(idRepuesto);
+
+            if (cantidadRequerida > stockDisponible)
+                throw new Exception($"RN2: Stock insuficiente para '{nombreRepuesto}' (ID {idRepuesto}). Requerido: {cantidadRequerida}, Disponible: {stockDisponible}.");
+        }
+
+         public void CerrarOrden(OrdenServicioEntity orden)
         {
             try
             {
-                using (var scope = new TransactionScope())
+                if (orden.Estado == EstadosOrdenes.Anulada)
+                    throw new Exception("Una orden 'Anulada' no puede ser Finalizada.");
+
+                orden.Estado = "Finalizada";
+                orden.FechaCierre = DateTime.Now;
+
+                 using (var scope = new TransactionScope())
                 {
-                    if (orden.CostoTotal <= 0)
-                        throw new Exception("No se permite finalizar: el balance de mano de obra y repuestos debe ser mayor a cero.");
-
-                    if (orden.IdTecnico == 0)
-                        throw new Exception("No se permite finalizar: la orden carece de técnico asignado.");
-
-                    orden.Estado = "Finalizada";
-
+                    _ordenDao.finalizarOrden(orden.IdOrden); 
                     scope.Complete();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
-        public void AnularOrden(OrdenTrabajoEntity orden)
+        // RN4
+        public void AnularOrden(OrdenServicioEntity orden)
         {
             try
             {
                 using (var scope = new TransactionScope())
                 {
-                    if (orden.Estado == "Finalizada" || orden.Estado == "Cobrada")
-                        throw new Exception("Una orden 'Finalizada' no puede ser eliminada directamente. Requiere nota de crédito.");
+                    if (orden.Estado == EstadosOrdenes.Finalizada)
+                        throw new Exception("RN4: Una orden 'Finalizada' no puede ser anulada.");
+
+                    if (orden.Estado == EstadosOrdenes.Anulada)
+                        throw new Exception("RN4: Una orden 'Anulada' no puede ser anulada.");
 
                     orden.Estado = "Anulada";
-
+                    _ordenDao.AnularOrden(orden.IdOrden);
                     scope.Complete();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
+            }
+        }
+
+        public void CrearOrden(OrdenServicioEntity orden)
+        {
+            try
+            {
+                using (var scope = new TransactionScope())
+                {
+                    var vehiculo= _vehiculoBss.getById(orden.IdVehiculo);
+                    if (vehiculo == null) throw new Exception($"No se encontro un vehiculo con el ID : {orden.IdVehiculo}");
+                    if(vehiculo.Kilometraje>orden.Kilometraje) throw new Exception($"El kilometraje de ingreso {orden.Kilometraje.ToString()} , no puede ser menor al ultimo kilometraje cargado  del vehiculo  {vehiculo.Kilometraje.ToString()}");
+                    vehiculo.Kilometraje = orden.Kilometraje;
+                    orden.FechaIngreso=DateTime.Now;
+                    _ordenDao.InsertarOrden(orden);
+                    _vehiculoBss.actualizarKilometraje(vehiculo);
+                    orden.Estado = EstadosOrdenes.Presupuestada;
+                    scope.Complete();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<OrdenServicioEntity> getAll()
+        {
+            try
+            {
+                return _ordenDao.getAll();                    
+                 
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
     }

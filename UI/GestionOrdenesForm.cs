@@ -1,19 +1,25 @@
 ﻿using BLL;
+using DAL;
 using Entities;
+using Microsoft.Data.SqlClient;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace UI
 {
     public partial class GestionOrdenesForm : Form
     {
-        private readonly Form _menuForm;
+         private readonly Form _menuForm;
+        private readonly OrdenBss _ordenBss = new OrdenBss();
+        private List<OrdenServicioEntity> _listaOrdenes = new List<OrdenServicioEntity>();
 
-        public GestionOrdenesForm(Form  menuForm)
+        public GestionOrdenesForm(Form menuForm)
         {
             InitializeComponent();
             _menuForm = menuForm;
         }
+
         private void btnVolverMenu_Click(object sender, EventArgs e)
         {
             NavegacionHelper.VolverAMenu(this, _menuForm);
@@ -21,69 +27,80 @@ namespace UI
 
         private void GestionOrdenesForm_Load(object sender, EventArgs e)
         {
-            // Acá iría la carga de la grilla cuando Emanuel/Adrián terminen el OrdenDao
-            // dgvOrdenes.DataSource = nueva OrdenBss().ObtenerTodas();
+            CargarOrdenes();
         }
 
-        private void btnCerrarOrden_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Toma el primer vehículo y primer repuesto reales de la BD para armar casos de prueba
+        /// listos para demostrar RN1, RN2, RN3, RN4 y el TransactionScope en la grilla.
+        /// </summary>
+        private void CargarOrdenes()
         {
-            // Verificamos que el usuario haya seleccionado una orden en la grilla
-            if (dgvOrdenes.CurrentRow == null)
-            {
-                MessageBox.Show("Por favor, seleccione una orden de la lista.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             try
             {
-                // Obtenemos el objeto de la fila seleccionada
-                var ordenActual = (OrdenTrabajoEntity)dgvOrdenes.CurrentRow.DataBoundItem;
+               this._listaOrdenes=this._ordenBss.getAll();
+                RefrescarGrilla();
 
-                OrdenBss bss = new OrdenBss();
-                bss.CerrarOrden(ordenActual); // Acá el BLL evalúa la RN3
+            }
+            catch(Exception ex)
+            {
 
-                MessageBox.Show("La orden fue cerrada y finalizada con éxito.", "Éxito",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }        
+             RefrescarGrilla();
+            
 
-                // Volver a cargar la grilla para refrescar los estados
-                // dgvOrdenes.DataSource = bss.ObtenerTodas();
+           
+        }
+
+        private void RefrescarGrilla()
+        {
+            dgvOrdenes.DataSource = null;
+            dgvOrdenes.DataSource = _listaOrdenes;
+        } 
+
+        private void btnFinalizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var ordenActual = (OrdenServicioEntity)dgvOrdenes.CurrentRow.DataBoundItem;
+
+                 _ordenBss.CerrarOrden(ordenActual);
+
+                MessageBox.Show(
+                    $"Orden #{ordenActual.IdOrden} finalizada con éxito.");
+
+                RefrescarGrilla();
             }
             catch (Exception ex)
             {
-                // Si la RN3 falla en la BLL, el mensaje de error cae acá
-                MessageBox.Show(ex.Message, "Validación de Negocio",
+                MessageBox.Show(ex.Message, "Validación de Negocio / Rollback",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        private void btnAnularOrden_Click(object sender, EventArgs e)
+        private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (dgvOrdenes.CurrentRow == null)
-            {
-                MessageBox.Show("Por favor, seleccione una orden de la lista.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             try
             {
-                var ordenActual = (OrdenTrabajoEntity)dgvOrdenes.CurrentRow.DataBoundItem;
+                var ordenActual = (OrdenServicioEntity)dgvOrdenes.CurrentRow.DataBoundItem;
 
-                OrdenBss bss = new OrdenBss();
-                bss.AnularOrden(ordenActual); // Acá el BLL evalúa la RN4
+                _ordenBss.AnularOrden(ordenActual); 
 
-                MessageBox.Show("La orden fue anulada correctamente.", "Éxito",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // dgvOrdenes.DataSource = bss.ObtenerTodas();
+                MessageBox.Show(
+                   $"Orden #{ordenActual.IdOrden} anulada con éxito.");
+                RefrescarGrilla();
             }
             catch (Exception ex)
             {
-                // Si la RN4 falla en la BLL, el mensaje de error cae acá
-                MessageBox.Show(ex.Message, "Validación de Negocio",
+                MessageBox.Show(ex.Message, "Validación de Negocio (RN4)",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
 
-
+        private void btnGenerar_Click(object sender, EventArgs e)
+        {
+            NavegacionHelper.AbrirYEsperar(this, new CrearOrden(this));
+            this.CargarOrdenes();
         }
     }
 }

@@ -19,6 +19,7 @@ namespace Entities
         public string Modelo { get; set; } = null!;
 
         public int Anio { get; set; }
+        public int Kilometraje { get; set; }
 
         public string? Color { get; set; }
 

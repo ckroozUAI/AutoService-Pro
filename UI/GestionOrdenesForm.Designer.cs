@@ -1,4 +1,5 @@
-﻿namespace UI
+﻿
+namespace UI
 {
     partial class GestionOrdenesForm
     {
@@ -28,9 +29,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionOrdenesForm));
             dgvOrdenes = new DataGridView();
-            btnCerrarOrden = new Button();
-            btnAnularOrden = new Button();
+            btnFinalizar = new Button();
+            btnEliminar = new Button();
+            btnMenu = new Button();
+            btnGenerar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvOrdenes).BeginInit();
             SuspendLayout();
             // 
@@ -39,48 +43,78 @@
             dgvOrdenes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvOrdenes.Location = new Point(12, 12);
             dgvOrdenes.Name = "dgvOrdenes";
-            dgvOrdenes.Size = new Size(556, 253);
+            dgvOrdenes.Size = new Size(776, 323);
             dgvOrdenes.TabIndex = 0;
             // 
-            // btnCerrarOrden
+            // btnFinalizar
             // 
-            btnCerrarOrden.Location = new Point(83, 325);
-            btnCerrarOrden.Name = "btnCerrarOrden";
-            btnCerrarOrden.Size = new Size(164, 23);
-            btnCerrarOrden.TabIndex = 1;
-            btnCerrarOrden.Text = "Finalizar Orden";
-            btnCerrarOrden.UseVisualStyleBackColor = true;
-            btnCerrarOrden.Click += btnCerrarOrden_Click;
+            btnFinalizar.Location = new Point(12, 357);
+            btnFinalizar.Name = "btnFinalizar";
+            btnFinalizar.Size = new Size(163, 39);
+            btnFinalizar.TabIndex = 1;
+            btnFinalizar.Text = "Finalizar";
+            btnFinalizar.UseVisualStyleBackColor = true;
+            btnFinalizar.Click += btnFinalizar_Click;
             // 
-            // btnAnularOrden
+            // btnEliminar
             // 
-            btnAnularOrden.Location = new Point(321, 325);
-            btnAnularOrden.Name = "btnAnularOrden";
-            btnAnularOrden.Size = new Size(164, 23);
-            btnAnularOrden.TabIndex = 2;
-            btnAnularOrden.Text = "Anular Orden";
-            btnAnularOrden.UseVisualStyleBackColor = true;
-            btnAnularOrden.Click += btnAnularOrden_Click;
+            btnEliminar.Location = new Point(197, 357);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(186, 39);
+            btnEliminar.TabIndex = 2;
+            btnEliminar.Text = "Anular";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
+            // 
+            // btnMenu
+            // 
+            btnMenu.Location = new Point(630, 357);
+            btnMenu.Name = "btnMenu";
+            btnMenu.Size = new Size(158, 39);
+            btnMenu.TabIndex = 3;
+            btnMenu.Text = "Volver al Menu";
+            btnMenu.UseVisualStyleBackColor = true;
+            btnMenu.Click += btnMenu_Click;
+            // 
+            // btnGenerar
+            // 
+            btnGenerar.Location = new Point(409, 357);
+            btnGenerar.Name = "btnGenerar";
+            btnGenerar.Size = new Size(186, 39);
+            btnGenerar.TabIndex = 4;
+            btnGenerar.Text = "Generar ";
+            btnGenerar.UseVisualStyleBackColor = true;
+            btnGenerar.Click += btnGenerar_Click;
             // 
             // GestionOrdenesForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(580, 384);
-            Controls.Add(btnAnularOrden);
-            Controls.Add(btnCerrarOrden);
+            ClientSize = new Size(800, 450);
+            Controls.Add(btnGenerar);
+            Controls.Add(btnMenu);
+            Controls.Add(btnEliminar);
+            Controls.Add(btnFinalizar);
             Controls.Add(dgvOrdenes);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "GestionOrdenesForm";
-            Text = "GestionOrdenesForm";
+            Text = "Gestion de ordenes de trabajo";
             Load += GestionOrdenesForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvOrdenes).EndInit();
             ResumeLayout(false);
         }
 
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            NavegacionHelper.VolverAMenu(this, _menuForm);
+        }
+
         #endregion
 
         private DataGridView dgvOrdenes;
-        private Button btnCerrarOrden;
-        private Button btnAnularOrden;
+        private Button btnFinalizar;
+        private Button btnEliminar;
+        private Button btnMenu;
+        private Button btnGenerar;
     }
 }
