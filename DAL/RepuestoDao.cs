@@ -47,6 +47,22 @@ namespace DAL
             }
         }
 
+        public RepuestoEntity? getById(int id)
+        {
+            try
+            {
+                using (var dbContext = new AutoServiceContext())
+                {
+                    var model = dbContext.Repuesto.AsNoTracking().FirstOrDefault(r => r.Id == id);
+                    return model == null ? null : RepuestoMapper.ToEntity(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public void create(RepuestoEntity entity)
         {
             try

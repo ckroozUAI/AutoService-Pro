@@ -8,7 +8,7 @@ namespace BLL
 {
     public class OrdenServicioBss
     {
-        private OrdenServicioDao dao = new OrdenServicioDao();
+        private OrdenDao dao = new OrdenDao();
 
         public List<OrdenServicioEntity> getAll()
         {

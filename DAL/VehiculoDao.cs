@@ -32,6 +32,25 @@ namespace DAL
             }
         }
 
+
+        public  VehiculoEntity getById(int id)
+        {
+            try
+            {
+                using (var dbContext = new AutoServiceContext())
+                {
+                    var v= dbContext.Vehiculo.FirstOrDefault(v => v.Id == id);
+                    if(v!=null) return Mapper.VehiculoMapper.ToEntity(v);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
         public bool hasVehiculos(int idCliente)
         {
             try
@@ -96,6 +115,8 @@ namespace DAL
                     model.Modelo = entity.Modelo;
                     model.Anio = entity.Anio;
                     model.Color = entity.Color;
+                    model.Kilometraje = entity.Kilometraje;
+                    dbContext.Update(model);
                     dbContext.SaveChanges();
                 }
             }

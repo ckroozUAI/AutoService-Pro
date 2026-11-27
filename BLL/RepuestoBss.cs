@@ -21,6 +21,21 @@ namespace BLL
             }
         }
 
+        public RepuestoEntity getById(int id)
+        {
+            try
+            {
+                var repuesto= dao.getById(id);
+                if (repuesto==null) throw new Exception("No hay ningun repuesto con el ID indicado.");
+                if (repuesto.StockFisico <= 0) throw new Exception("No hay mas stock para el repuesto indicado.");
+                return repuesto;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public void RegistrarNuevoRepuesto(RepuestoEntity entity)
         {
             try
@@ -58,6 +73,22 @@ namespace BLL
                 using (var scope = new TransactionScope())
                 {
                     dao.delete(id);
+                    scope.Complete();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public void DescontarRepuesto(RepuestoEntity e)
+        {
+            try
+            {
+                using (var scope = new TransactionScope())
+                {
+                    dao.update(e);
                     scope.Complete();
                 }
             }

@@ -25,6 +25,30 @@ namespace BLL
             }
         }
 
+        public void actualizarKilometraje(VehiculoEntity vehiculo)
+        {
+            try
+            {
+                dao.update(vehiculo);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public VehiculoEntity getById(int id)
+        {
+            try
+            {
+                return dao.getById(id);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public void save(VehiculoEntity entity)
         {
             try

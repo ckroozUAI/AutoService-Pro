@@ -1,6 +1,9 @@
-﻿using Entities;
+﻿using DAL.Models;
+using Entities;
+using Mapper;
 using Microsoft.Data.SqlClient;
 using System;
+using UI;
 
 namespace DAL
 {
@@ -44,56 +47,26 @@ namespace DAL
             }
         }
 
-        public int InsertarOrden(OrdenTrabajoEntity orden)
+        public void InsertarOrden(OrdenServicioEntity orden)
         {
-            using (SqlConnection conn = new SqlConnection(ConeccionString.getConectionString()))
+            try
             {
-                string query = @"
-                    INSERT INTO OrdenServicio 
-                        (ID_VEHICULO, FECHA_INGRESO, FECHA_CIERRE, KILOMETRAJE_INGRESO, DIAGNOSTICO, ESTADO, MANO_OBRA, IMPUESTOS, TOTAL)
-                    OUTPUT INSERTED.ID
-                    VALUES 
-                        (@IdVehiculo, @FechaIngreso, @FechaCierre, @Kilometraje, @Diagnostico, @Estado, @ManoObra, @Impuestos, @Total)";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (var dbContext = new AutoServiceContext())
                 {
-                    cmd.Parameters.AddWithValue("@IdVehiculo", orden.IdVehiculo);
-                    cmd.Parameters.AddWithValue("@FechaIngreso", orden.FechaIngreso);
-                    cmd.Parameters.AddWithValue("@FechaCierre", (object)orden.FechaCierre ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Kilometraje", orden.KilometrajeIngreso);
-                    cmd.Parameters.AddWithValue("@Diagnostico", (object)orden.Diagnostico ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Estado", orden.Estado);
-                    cmd.Parameters.AddWithValue("@ManoObra", orden.ManoObra);
-                    cmd.Parameters.AddWithValue("@Impuestos", orden.Impuestos);
-                    cmd.Parameters.AddWithValue("@Total", orden.CostoTotal);
+                    var model =Mapper.OrdenServicioMapper.ToModel(orden);
 
-                    conn.Open();
-                    return Convert.ToInt32(cmd.ExecuteScalar());
+                    dbContext.OrdenServicio.Add(model);
+                    dbContext.SaveChanges();
                 }
             }
-        }
-
-        public void InsertarDetalle(DetalleOrdenEntity detalle)
-        {
-            using (SqlConnection conn = new SqlConnection(ConeccionString.getConectionString()))
-            {
-                string query = @"
-                    INSERT INTO DetalleOrden (ID_ORDEN, ID_REPUESTO, CANTIDAD, PRECIO_UNITARIO)
-                    VALUES (@IdOrden, @IdRepuesto, @Cantidad, @PrecioUnitario)";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@IdOrden", detalle.IdOrden);
-                    cmd.Parameters.AddWithValue("@IdRepuesto", detalle.IdRepuesto);
-                    cmd.Parameters.AddWithValue("@Cantidad", detalle.Cantidad);
-                    cmd.Parameters.AddWithValue("@PrecioUnitario", detalle.PrecioUnitario);
-
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                }
+            catch (Exception ex) {
+                throw ex;
             }
+            
+            
         }
 
+         
         public void DescontarStock(int idRepuesto, int cantidad)
         {
             using (SqlConnection conn = new SqlConnection(ConeccionString.getConectionString()))
@@ -114,20 +87,98 @@ namespace DAL
                         throw new Exception($"Stock insuficiente para descontar {cantidad} unidades del repuesto ID {idRepuesto}.");
                 }
             }
+        } 
+
+        public List<OrdenServicioEntity> getAll()
+        {
+            try
+            {
+                using (var dbContext = new AutoServiceContext())
+                {
+                    return dbContext.OrdenServicio
+                        .Select(m => OrdenServicioMapper.ToEntity(m))
+                        .ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public void ActualizarKilometrajeVehiculo(int idVehiculo, int nuevoKilometraje)
+
+        public OrdenServicioEntity getById(int idOrden)
         {
-            using (SqlConnection conn = new SqlConnection(ConeccionString.getConectionString()))
+            try
             {
-                string query = "UPDATE Vehiculo SET KILOMETRAJE = @Kilometraje WHERE ID = @IdVehiculo";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (var dbContext = new AutoServiceContext())
                 {
-                    cmd.Parameters.AddWithValue("@Kilometraje", nuevoKilometraje);
-                    cmd.Parameters.AddWithValue("@IdVehiculo", idVehiculo);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    var model = dbContext.OrdenServicio.FirstOrDefault(o => o.IdOrden == idOrden);
+                    return OrdenServicioMapper.ToEntity(model);
                 }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void finalizarOrden(int idOrden)
+        {
+            try
+            {
+                using (var dbContext = new AutoServiceContext())
+                {
+                    var model = dbContext.OrdenServicio.FirstOrDefault(o => o.IdOrden == idOrden);
+                    if (model == null) throw new Exception("No se encontró la orden de servicio.");
+
+                    model.Estado = EstadosOrdenes.Finalizada;
+                    model.FechaCierre = DateTime.Now;
+                    dbContext.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void AnularOrden(int idOrden)
+        {
+            try
+            {
+                using (var dbContext = new AutoServiceContext())
+                {
+                    var model = dbContext.OrdenServicio.FirstOrDefault(o => o.IdOrden == idOrden);
+                    if (model == null) throw new Exception("No se encontró la orden de servicio.");
+
+                    model.Estado = EstadosOrdenes.Anulada;
+                    model.FechaCierre = DateTime.Now;
+                    dbContext.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void delete(int idOrden)
+        {
+            try
+            {
+                using (var dbContext = new AutoServiceContext())
+                {
+                    var model = dbContext.OrdenServicio.FirstOrDefault(o => o.IdOrden == idOrden);
+                    if (model == null) throw new Exception("No se encontró la orden de servicio.");
+
+                    dbContext.OrdenServicio.Remove(model);
+                    dbContext.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
     }

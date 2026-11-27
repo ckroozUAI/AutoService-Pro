@@ -119,6 +119,7 @@ public partial class AutoServiceContext : DbContext
             entity.HasOne(d => d.Cliente).WithMany(p => p.Vehiculos)
                 .HasForeignKey(d => d.IdCliente)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+            entity.Property(e => e.Kilometraje).HasColumnName("KILOMETRAJE");
         });
 
         modelBuilder.Entity<OrdenServicioModel>(entity =>
@@ -149,6 +150,7 @@ public partial class AutoServiceContext : DbContext
             entity.Property(e => e.Total)
                 .HasColumnType("decimal(18, 2)")
                 .HasColumnName("TOTAL");
+            entity.Property(e => e.Kilometraje).HasColumnName("KILOMETRAJE");
         });
 
         modelBuilder.Entity<RepuestoModel>(entity =>

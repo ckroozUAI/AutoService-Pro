@@ -13,5 +13,6 @@ namespace Entities.Models
         public decimal ManoObra { get; set; }
         public decimal TotalRepuestos { get; set; }
         public decimal Total { get; set; }
+        public int Kilometraje { get; set; }
     }
 }

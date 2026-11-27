@@ -19,7 +19,8 @@ namespace Mapper
                 Estado = model.Estado,
                 ManoObra = model.ManoObra,
                 TotalRepuestos = model.TotalRepuestos,
-                Total = model.Total
+                Total = model.Total,
+                Kilometraje = model.Kilometraje
             };
         }
 
@@ -37,7 +38,8 @@ namespace Mapper
                 Estado = entity.Estado,
                 ManoObra = entity.ManoObra,
                 TotalRepuestos = entity.TotalRepuestos,
-                Total = entity.Total
+                Total = entity.Total,
+                Kilometraje=entity.Kilometraje
             };
         }
     }
