@@ -29,6 +29,7 @@ namespace UI
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionOrdenesForm));
             dgvOrdenes = new DataGridView();
             btnFinalizar = new Button();
@@ -40,17 +41,32 @@ namespace UI
             // 
             // dgvOrdenes
             // 
+            dgvOrdenes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvOrdenes.BackgroundColor = Color.FromArgb(241, 245, 249);
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(19, 29, 48);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvOrdenes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvOrdenes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvOrdenes.Location = new Point(12, 12);
+            dgvOrdenes.EnableHeadersVisualStyles = false;
+            dgvOrdenes.Location = new Point(14, 16);
+            dgvOrdenes.Margin = new Padding(3, 4, 3, 4);
             dgvOrdenes.Name = "dgvOrdenes";
-            dgvOrdenes.Size = new Size(776, 323);
+            dgvOrdenes.RowHeadersVisible = false;
+            dgvOrdenes.RowHeadersWidth = 51;
+            dgvOrdenes.Size = new Size(1368, 431);
             dgvOrdenes.TabIndex = 0;
             // 
             // btnFinalizar
             // 
-            btnFinalizar.Location = new Point(12, 357);
+            btnFinalizar.Location = new Point(262, 467);
+            btnFinalizar.Margin = new Padding(3, 4, 3, 4);
             btnFinalizar.Name = "btnFinalizar";
-            btnFinalizar.Size = new Size(163, 39);
+            btnFinalizar.Size = new Size(186, 52);
             btnFinalizar.TabIndex = 1;
             btnFinalizar.Text = "Finalizar";
             btnFinalizar.UseVisualStyleBackColor = true;
@@ -58,9 +74,10 @@ namespace UI
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(197, 357);
+            btnEliminar.Location = new Point(473, 467);
+            btnEliminar.Margin = new Padding(3, 4, 3, 4);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(186, 39);
+            btnEliminar.Size = new Size(213, 52);
             btnEliminar.TabIndex = 2;
             btnEliminar.Text = "Anular";
             btnEliminar.UseVisualStyleBackColor = true;
@@ -68,37 +85,40 @@ namespace UI
             // 
             // btnMenu
             // 
-            btnMenu.Location = new Point(630, 357);
+            btnMenu.Location = new Point(968, 467);
+            btnMenu.Margin = new Padding(3, 4, 3, 4);
             btnMenu.Name = "btnMenu";
-            btnMenu.Size = new Size(158, 39);
+            btnMenu.Size = new Size(181, 52);
             btnMenu.TabIndex = 3;
-            btnMenu.Text = "Volver al Menu";
+            btnMenu.Text = "Volver al Menú";
             btnMenu.UseVisualStyleBackColor = true;
             btnMenu.Click += btnMenu_Click;
             // 
             // btnGenerar
             // 
-            btnGenerar.Location = new Point(409, 357);
+            btnGenerar.Location = new Point(715, 467);
+            btnGenerar.Margin = new Padding(3, 4, 3, 4);
             btnGenerar.Name = "btnGenerar";
-            btnGenerar.Size = new Size(186, 39);
+            btnGenerar.Size = new Size(213, 52);
             btnGenerar.TabIndex = 4;
-            btnGenerar.Text = "Generar ";
+            btnGenerar.Text = "Generar Nueva Orden";
             btnGenerar.UseVisualStyleBackColor = true;
             btnGenerar.Click += btnGenerar_Click;
             // 
             // GestionOrdenesForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1394, 544);
             Controls.Add(btnGenerar);
             Controls.Add(btnMenu);
             Controls.Add(btnEliminar);
             Controls.Add(btnFinalizar);
             Controls.Add(dgvOrdenes);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             Name = "GestionOrdenesForm";
-            Text = "Gestion de ordenes de trabajo";
+            Text = "AutoService Pro - Gestión de Órdenes de Trabajo";
             Load += GestionOrdenesForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvOrdenes).EndInit();
             ResumeLayout(false);

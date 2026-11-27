@@ -18,6 +18,8 @@ namespace UI
         public RegisterForm()
         {
             InitializeComponent();
+
+            TemaUI.AplicarTemaFormulario(this);
         }
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
@@ -70,13 +72,11 @@ namespace UI
             {
                 var entity = new UsuarioEntity
                 {
-
                     Usuario = usuario,
                     Password = password
                 };
                 bss.create(entity);
                 return true;
-
             }
             catch (Exception ex)
             {
@@ -84,7 +84,7 @@ namespace UI
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e) //Repetir contraseña
         {
 
         }

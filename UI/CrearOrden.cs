@@ -25,6 +25,8 @@ namespace UI
         {
             InitializeComponent();
             _menuForm = new Form();
+
+            TemaUI.AplicarTemaFormulario(this);
         }
 
         private void CrearOrden_Load(object sender, EventArgs e)

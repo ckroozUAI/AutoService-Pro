@@ -18,6 +18,8 @@ namespace UI
         public LoginForm()
         {
             InitializeComponent();
+
+            TemaUI.AplicarTemaFormulario(this);
         }
         private void btnIngresar_Click(object sender, EventArgs e)
         {

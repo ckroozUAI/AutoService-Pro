@@ -41,26 +41,29 @@
             // 
             // txtUsuario
             // 
-            txtUsuario.Location = new Point(120, 30);
+            txtUsuario.Location = new Point(137, 40);
+            txtUsuario.Margin = new Padding(3, 4, 3, 4);
             txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(150, 23);
+            txtUsuario.Size = new Size(171, 27);
             txtUsuario.TabIndex = 0;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(120, 70);
+            txtPassword.Location = new Point(137, 93);
+            txtPassword.Margin = new Padding(3, 4, 3, 4);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(150, 23);
+            txtPassword.Size = new Size(171, 27);
             txtPassword.TabIndex = 1;
             // 
             // btnIngresar
             // 
             btnIngresar.BackColor = SystemColors.MenuBar;
             btnIngresar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnIngresar.Location = new Point(30, 115);
+            btnIngresar.Location = new Point(34, 153);
+            btnIngresar.Margin = new Padding(3, 4, 3, 4);
             btnIngresar.Name = "btnIngresar";
-            btnIngresar.Size = new Size(100, 30);
+            btnIngresar.Size = new Size(114, 40);
             btnIngresar.TabIndex = 2;
             btnIngresar.Text = "Ingresar";
             btnIngresar.UseVisualStyleBackColor = false;
@@ -70,9 +73,10 @@
             // 
             btnRegistrarse.BackColor = SystemColors.MenuBar;
             btnRegistrarse.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnRegistrarse.Location = new Point(170, 115);
+            btnRegistrarse.Location = new Point(194, 153);
+            btnRegistrarse.Margin = new Padding(3, 4, 3, 4);
             btnRegistrarse.Name = "btnRegistrarse";
-            btnRegistrarse.Size = new Size(100, 30);
+            btnRegistrarse.Size = new Size(114, 40);
             btnRegistrarse.TabIndex = 3;
             btnRegistrarse.Text = "Registrarse";
             btnRegistrarse.UseVisualStyleBackColor = false;
@@ -82,9 +86,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
-            label1.Location = new Point(30, 73);
+            label1.Location = new Point(34, 97);
             label1.Name = "label1";
-            label1.Size = new Size(81, 17);
+            label1.Size = new Size(104, 23);
             label1.TabIndex = 4;
             label1.Text = "Contraseña:";
             // 
@@ -92,18 +96,18 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
-            label2.Location = new Point(30, 33);
+            label2.Location = new Point(34, 44);
             label2.Name = "label2";
-            label2.Size = new Size(59, 17);
+            label2.Size = new Size(75, 23);
             label2.TabIndex = 5;
             label2.Text = "Usuario:";
             // 
             // LoginForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(300, 175);
+            ClientSize = new Size(343, 233);
             Controls.Add(label1);
             Controls.Add(label2);
             Controls.Add(btnRegistrarse);
@@ -112,11 +116,12 @@
             Controls.Add(txtUsuario);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Iniciar Sesión";
+            Text = "AutoService Pro - Iniciar Sesión";
             Load += LoginForm_Load;
             ResumeLayout(false);
             PerformLayout();

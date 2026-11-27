@@ -15,6 +15,8 @@ namespace UI
         public MenuForm()
         {
             InitializeComponent();
+
+            TemaUI.AplicarTemaFormulario(this);
         }
 
         private void btnRepuestos_Click(object sender, EventArgs e)
@@ -51,7 +53,7 @@ namespace UI
             NavegacionHelper.AbrirYEsperar(this, new ClientesVehiculosForm(this));
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //Botón Salir
         {
             this.Close();
         }

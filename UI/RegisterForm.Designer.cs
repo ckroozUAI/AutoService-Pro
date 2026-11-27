@@ -41,24 +41,24 @@
             // 
             // txtUsuario
             // 
-            txtUsuario.Location = new Point(165, 37);
+            txtUsuario.Location = new Point(205, 37);
             txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(171, 25);
+            txtUsuario.Size = new Size(171, 29);
             txtUsuario.TabIndex = 0;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(165, 83);
+            txtPassword.Location = new Point(205, 83);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(171, 25);
+            txtPassword.Size = new Size(171, 29);
             txtPassword.TabIndex = 1;
             // 
             // btnRegistrar
             // 
             btnRegistrar.BackColor = SystemColors.MenuBar;
             btnRegistrar.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
-            btnRegistrar.Location = new Point(34, 175);
+            btnRegistrar.Location = new Point(64, 175);
             btnRegistrar.Name = "btnRegistrar";
             btnRegistrar.Size = new Size(114, 34);
             btnRegistrar.TabIndex = 2;
@@ -70,7 +70,7 @@
             // 
             btnVolver.BackColor = SystemColors.MenuBar;
             btnVolver.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
-            btnVolver.Location = new Point(194, 175);
+            btnVolver.Location = new Point(237, 175);
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(114, 34);
             btnVolver.TabIndex = 3;
@@ -84,7 +84,7 @@
             lblUsuario.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             lblUsuario.Location = new Point(34, 37);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(59, 17);
+            lblUsuario.Size = new Size(75, 23);
             lblUsuario.TabIndex = 1;
             lblUsuario.Text = "Usuario:";
             lblUsuario.Click += lblUsuario_Click;
@@ -95,7 +95,7 @@
             lblPassword.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             lblPassword.Location = new Point(34, 83);
             lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(81, 17);
+            lblPassword.Size = new Size(104, 23);
             lblPassword.TabIndex = 0;
             lblPassword.Text = "Contraseña:";
             // 
@@ -105,25 +105,25 @@
             label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             label1.Location = new Point(34, 127);
             label1.Name = "label1";
-            label1.Size = new Size(127, 17);
+            label1.Size = new Size(165, 23);
             label1.TabIndex = 4;
             label1.Text = "Repetir contraseña:";
             label1.Click += label1_Click;
             // 
             // txtRepetirPassword
             // 
-            txtRepetirPassword.Location = new Point(165, 124);
+            txtRepetirPassword.Location = new Point(205, 124);
             txtRepetirPassword.Name = "txtRepetirPassword";
             txtRepetirPassword.PasswordChar = '*';
-            txtRepetirPassword.Size = new Size(171, 25);
+            txtRepetirPassword.Size = new Size(171, 29);
             txtRepetirPassword.TabIndex = 5;
             // 
             // RegisterForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 17F);
+            AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(365, 243);
+            ClientSize = new Size(433, 229);
             Controls.Add(txtRepetirPassword);
             Controls.Add(label1);
             Controls.Add(lblPassword);
@@ -138,7 +138,7 @@
             MaximizeBox = false;
             Name = "RegisterForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Registro de Usuario";
+            Text = "AutoService Pro - Registro de Usuario";
             Load += RegisterForm_Load;
             ResumeLayout(false);
             PerformLayout();
