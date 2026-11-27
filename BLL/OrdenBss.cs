@@ -82,25 +82,52 @@ namespace BLL
             }
         }
 
-        public void CrearOrden(OrdenServicioEntity orden)
+        // RN2 + TransactionScope: Valida stock, descuenta en REPUESTO, inserta orden y revierte todo si falla
+        public void CrearOrden(OrdenServicioEntity orden, int idRepuesto, int cantidadRepuesto)
         {
             try
             {
                 using (var scope = new TransactionScope())
                 {
-                    var vehiculo= _vehiculoBss.getById(orden.IdVehiculo);
-                    if (vehiculo == null) throw new Exception($"No se encontro un vehiculo con el ID : {orden.IdVehiculo}");
-                    if(vehiculo.Kilometraje>orden.Kilometraje) throw new Exception($"El kilometraje de ingreso {orden.Kilometraje.ToString()} , no puede ser menor al ultimo kilometraje cargado  del vehiculo  {vehiculo.Kilometraje.ToString()}");
-                    vehiculo.Kilometraje = orden.Kilometraje;
-                    orden.FechaIngreso=DateTime.Now;
-                    _ordenDao.InsertarOrden(orden);
-                    _vehiculoBss.actualizarKilometraje(vehiculo);
+                    var vehiculo = _vehiculoBss.getById(orden.IdVehiculo);
+                    if (vehiculo == null)
+                        throw new Exception($"No se encontro un vehiculo con el ID : {orden.IdVehiculo}");
+
+                    if (vehiculo.Kilometraje > orden.Kilometraje)
+                        throw new Exception($"El kilometraje de ingreso {orden.Kilometraje}, no puede ser menor al ultimo kilometraje cargado del vehiculo {vehiculo.Kilometraje}");
+
+                    orden.FechaIngreso = DateTime.Now;
                     orden.Estado = EstadosOrdenes.Presupuestada;
+
+                    // 1. Inserta cabecera en ORDEN_SERVICIO y obtiene IdOrden
+                    _ordenDao.InsertarOrden(orden);
+
+                    // 2. Si hay repuestos imputados, valida RN2 y descuenta stock dentro de la transacción
+                    if (cantidadRepuesto > 0)
+                    {
+                        var repuestoBss = new RepuestoBss();
+                        var repuesto = repuestoBss.getById(idRepuesto);
+                        if (repuesto == null)
+                            throw new Exception($"No se encontro un repuesto con el ID : {idRepuesto}");
+
+                        // Valida contra el stock real en BD antes de descontar
+                        ValidarStockRN2(idRepuesto, cantidadRepuesto, repuesto.Descripcion);
+
+                        repuesto.StockFisico -= cantidadRepuesto;
+                        repuestoBss.DescontarRepuesto(repuesto);
+                    }
+
+                    // 3. Actualiza kilometraje del vehículo
+                    vehiculo.Kilometraje = orden.Kilometraje;
+                    _vehiculoBss.actualizarKilometraje(vehiculo);
+
+                    // Solo si todo pasó sin excepciones se confirma (Commit)
                     scope.Complete();
                 }
             }
             catch (Exception)
             {
+                // Al salir del using sin scope.Complete(), TransactionScope hace Rollback automático
                 throw;
             }
         }

@@ -8,7 +8,13 @@ namespace UI
         [STAThread]
         static void Main()
         {
-             ApplicationConfiguration.Initialize();
+            //ApplicationConfiguration.Initialize();
+
+
+            Application.SetHighDpiMode(HighDpiMode.DpiUnaware); // Configuración para que la aplicación no se escale automáticamente en pantallas de alta resolución
+            Application.EnableVisualStyles(); // Habilita los estilos visuales para la aplicación
+            Application.SetCompatibleTextRenderingDefault(false); // Configura el renderizado de texto para que sea compatible con versiones anteriores de Windows Forms
+
 
             LoginForm loginForm = new LoginForm();
 

@@ -25,6 +25,8 @@ namespace UI
         {
             InitializeComponent();
             _menuForm = menuForm;
+
+            TemaUI.AplicarTemaFormulario(this);
         }
 
         private void ClientesVehiculosForm_Load(object sender, EventArgs e)
@@ -188,6 +190,7 @@ namespace UI
             txtModelo.Text = v.Modelo;
             numAnio.Value = Math.Clamp(v.Anio, (int)numAnio.Minimum, (int)numAnio.Maximum);
             txtColor.Text = v.Color;
+            txtKilometraje.Text = v.Kilometraje.ToString();
         }
 
         private void NuevoVehiculo()
@@ -198,6 +201,7 @@ namespace UI
             txtModelo.Clear();
             txtColor.Clear();
             numAnio.Value = Math.Min(DateTime.Now.Year, (int)numAnio.Maximum);
+            txtKilometraje.Clear();
             dgvVehiculos.CurrentCell = null;
             dgvVehiculos.ClearSelection();
         }
@@ -216,6 +220,14 @@ namespace UI
                 return;
             }
 
+            if (!int.TryParse(txtKilometraje.Text.Trim(), out int kilometraje))
+            {
+                MessageBox.Show("Ingrese un valor numérico entero válido para el kilometraje.", "Atención",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtKilometraje.Focus();
+                return;
+            }
+
             try
             {
                 var entity = new VehiculoEntity
@@ -226,7 +238,8 @@ namespace UI
                     Marca = txtMarca.Text,
                     Modelo = txtModelo.Text,
                     Anio = (int)numAnio.Value,
-                    Color = Nulo(txtColor.Text)
+                    Color = Nulo(txtColor.Text),
+                    Kilometraje = kilometraje
                 };
                 vehiculoBss.save(entity);
                 MessageBox.Show("Vehículo guardado correctamente.", "Éxito",

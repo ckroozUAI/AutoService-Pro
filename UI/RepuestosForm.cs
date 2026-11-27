@@ -14,6 +14,8 @@ namespace UI
         {
             InitializeComponent();
             _menuForm = menuForm;
+
+            TemaUI.AplicarTemaFormulario(this);
         }
 
         private void RepuestosForm_Load(object sender, EventArgs e)

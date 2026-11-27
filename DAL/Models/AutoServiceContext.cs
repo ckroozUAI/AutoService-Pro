@@ -33,6 +33,7 @@ public partial class AutoServiceContext : DbContext
         modelBuilder.Entity<ClienteModel>(entity =>
         {
             entity.HasKey(e => e.Id);
+            entity.ToTable("CLIENTE");
 
             entity.HasIndex(e => e.Dni).IsUnique();
 
@@ -65,9 +66,10 @@ public partial class AutoServiceContext : DbContext
 
         modelBuilder.Entity<UsuarioModel>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Usuario__3214EC27631026A8");
+            entity.HasKey(e => e.Id).HasName("PK_USUARIO");
+            entity.ToTable("USUARIO");
 
-            entity.HasIndex(e => e.Usuario, "UQ__Usuario__E251F4843079F6ED").IsUnique();
+            entity.HasIndex(e => e.Usuario, "UQ_USUARIO_NOMBRE").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.FechaRegistro)
@@ -87,8 +89,9 @@ public partial class AutoServiceContext : DbContext
         modelBuilder.Entity<VehiculoModel>(entity =>
         {
             entity.HasKey(e => e.Id);
+            entity.ToTable("VEHICULO");
 
-            entity.HasIndex(e => e.IdCliente, "IX_Vehiculo_Cliente");
+            entity.HasIndex(e => e.IdCliente, "IX_VEHICULO_CLIENTE");
 
             entity.HasIndex(e => e.Patente).IsUnique();
 
@@ -125,7 +128,7 @@ public partial class AutoServiceContext : DbContext
         modelBuilder.Entity<OrdenServicioModel>(entity =>
         {
             entity.HasKey(e => e.IdOrden);
-            entity.ToTable("ORDENSERVICIO");
+            entity.ToTable("ORDEN_SERVICIO");
 
             entity.Property(e => e.IdOrden).HasColumnName("ID");
             entity.Property(e => e.IdVehiculo).HasColumnName("ID_VEHICULO");
@@ -137,8 +140,12 @@ public partial class AutoServiceContext : DbContext
             entity.Property(e => e.FechaCierre)
                 .HasColumnType("datetime")
                 .HasColumnName("FECHA_CIERRE");
+            entity.Property(e => e.Diagnostico)
+                .HasMaxLength(500)
+                .IsUnicode(false)
+                .HasColumnName("DIAGNOSTICO");
             entity.Property(e => e.Estado)
-                .HasMaxLength(30)
+                .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("ESTADO");
             entity.Property(e => e.ManoObra)
@@ -177,6 +184,5 @@ public partial class AutoServiceContext : DbContext
 
         OnModelCreatingPartial(modelBuilder);
     }
-
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

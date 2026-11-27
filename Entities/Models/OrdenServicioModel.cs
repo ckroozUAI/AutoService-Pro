@@ -9,6 +9,7 @@ namespace Entities.Models
         public int? IdTecnico { get; set; }
         public DateTime FechaIngreso { get; set; }
         public DateTime? FechaCierre { get; set; }
+        public string? Diagnostico { get; set; }
         public string Estado { get; set; } = null!;
         public decimal ManoObra { get; set; }
         public decimal TotalRepuestos { get; set; }

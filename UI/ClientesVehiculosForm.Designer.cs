@@ -46,6 +46,8 @@
             txtNombre = new TextBox();
             lblNombre = new Label();
             gbVehiculos = new GroupBox();
+            txtKilometraje = new TextBox();
+            lblKilometraje = new Label();
             dgvVehiculos = new DataGridView();
             btnEliminarVehiculo = new Button();
             btnGuardarVehiculo = new Button();
@@ -85,20 +87,23 @@
             gbClientes.Controls.Add(lblApellido);
             gbClientes.Controls.Add(txtNombre);
             gbClientes.Controls.Add(lblNombre);
-            gbClientes.Location = new Point(12, 12);
+            gbClientes.Location = new Point(14, 16);
+            gbClientes.Margin = new Padding(3, 4, 3, 4);
             gbClientes.Name = "gbClientes";
-            gbClientes.Size = new Size(956, 300);
+            gbClientes.Padding = new Padding(3, 4, 3, 4);
+            gbClientes.Size = new Size(1093, 400);
             gbClientes.TabIndex = 0;
             gbClientes.TabStop = false;
             gbClientes.Text = "Clientes";
             // 
             // btnVolverMenu
             // 
-            btnVolverMenu.Location = new Point(824, 24);
+            btnVolverMenu.Location = new Point(942, 32);
+            btnVolverMenu.Margin = new Padding(3, 4, 3, 4);
             btnVolverMenu.Name = "btnVolverMenu";
-            btnVolverMenu.Size = new Size(120, 23);
+            btnVolverMenu.Size = new Size(137, 31);
             btnVolverMenu.TabIndex = 15;
-            btnVolverMenu.Text = "Volver al Menu";
+            btnVolverMenu.Text = "Volver al Menú";
             btnVolverMenu.UseVisualStyleBackColor = true;
             btnVolverMenu.Click += btnVolverMenu_Click_1;
             // 
@@ -110,22 +115,25 @@
             dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvClientes.BackgroundColor = SystemColors.Window;
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvClientes.Location = new Point(12, 118);
+            dgvClientes.Location = new Point(14, 157);
+            dgvClientes.Margin = new Padding(3, 4, 3, 4);
             dgvClientes.MultiSelect = false;
             dgvClientes.Name = "dgvClientes";
             dgvClientes.ReadOnly = true;
             dgvClientes.RowHeadersVisible = false;
+            dgvClientes.RowHeadersWidth = 51;
             dgvClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvClientes.Size = new Size(932, 170);
+            dgvClientes.Size = new Size(1065, 227);
             dgvClientes.TabIndex = 10;
             dgvClientes.CellContentClick += dgvClientes_CellContentClick;
             dgvClientes.SelectionChanged += dgvClientes_SelectionChanged;
             // 
             // btnEliminarCliente
             // 
-            btnEliminarCliente.Location = new Point(212, 78);
+            btnEliminarCliente.Location = new Point(242, 104);
+            btnEliminarCliente.Margin = new Padding(3, 4, 3, 4);
             btnEliminarCliente.Name = "btnEliminarCliente";
-            btnEliminarCliente.Size = new Size(90, 28);
+            btnEliminarCliente.Size = new Size(103, 37);
             btnEliminarCliente.TabIndex = 7;
             btnEliminarCliente.Text = "Eliminar";
             btnEliminarCliente.UseVisualStyleBackColor = true;
@@ -133,9 +141,10 @@
             // 
             // btnGuardarCliente
             // 
-            btnGuardarCliente.Location = new Point(112, 78);
+            btnGuardarCliente.Location = new Point(128, 104);
+            btnGuardarCliente.Margin = new Padding(3, 4, 3, 4);
             btnGuardarCliente.Name = "btnGuardarCliente";
-            btnGuardarCliente.Size = new Size(90, 28);
+            btnGuardarCliente.Size = new Size(103, 37);
             btnGuardarCliente.TabIndex = 6;
             btnGuardarCliente.Text = "Guardar";
             btnGuardarCliente.UseVisualStyleBackColor = true;
@@ -143,9 +152,10 @@
             // 
             // btnNuevoCliente
             // 
-            btnNuevoCliente.Location = new Point(12, 78);
+            btnNuevoCliente.Location = new Point(14, 104);
+            btnNuevoCliente.Margin = new Padding(3, 4, 3, 4);
             btnNuevoCliente.Name = "btnNuevoCliente";
-            btnNuevoCliente.Size = new Size(90, 28);
+            btnNuevoCliente.Size = new Size(103, 37);
             btnNuevoCliente.TabIndex = 5;
             btnNuevoCliente.Text = "Nuevo";
             btnNuevoCliente.UseVisualStyleBackColor = true;
@@ -153,87 +163,94 @@
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(552, 42);
+            txtEmail.Location = new Point(631, 56);
+            txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(200, 23);
+            txtEmail.Size = new Size(228, 27);
             txtEmail.TabIndex = 4;
             // 
             // lblEmail
             // 
             lblEmail.AutoSize = true;
-            lblEmail.Location = new Point(552, 24);
+            lblEmail.Location = new Point(631, 32);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(39, 15);
+            lblEmail.Size = new Size(49, 20);
             lblEmail.TabIndex = 14;
             lblEmail.Text = "Email:";
             // 
             // txtTelefono
             // 
-            txtTelefono.Location = new Point(412, 42);
+            txtTelefono.Location = new Point(471, 56);
+            txtTelefono.Margin = new Padding(3, 4, 3, 4);
             txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(130, 23);
+            txtTelefono.Size = new Size(148, 27);
             txtTelefono.TabIndex = 3;
             // 
             // lblTelefono
             // 
             lblTelefono.AutoSize = true;
-            lblTelefono.Location = new Point(412, 24);
+            lblTelefono.Location = new Point(471, 32);
             lblTelefono.Name = "lblTelefono";
-            lblTelefono.Size = new Size(56, 15);
+            lblTelefono.Size = new Size(70, 20);
             lblTelefono.TabIndex = 13;
             lblTelefono.Text = "Teléfono:";
             // 
             // txtDni
             // 
-            txtDni.Location = new Point(292, 42);
+            txtDni.Location = new Point(334, 56);
+            txtDni.Margin = new Padding(3, 4, 3, 4);
             txtDni.Name = "txtDni";
-            txtDni.Size = new Size(110, 23);
+            txtDni.Size = new Size(125, 27);
             txtDni.TabIndex = 2;
             // 
             // lblDni
             // 
             lblDni.AutoSize = true;
-            lblDni.Location = new Point(292, 24);
+            lblDni.Location = new Point(334, 32);
             lblDni.Name = "lblDni";
-            lblDni.Size = new Size(30, 15);
+            lblDni.Size = new Size(38, 20);
             lblDni.TabIndex = 12;
             lblDni.Text = "DNI:";
             // 
             // txtApellido
             // 
-            txtApellido.Location = new Point(152, 42);
+            txtApellido.Location = new Point(174, 56);
+            txtApellido.Margin = new Padding(3, 4, 3, 4);
             txtApellido.Name = "txtApellido";
-            txtApellido.Size = new Size(130, 23);
+            txtApellido.Size = new Size(148, 27);
             txtApellido.TabIndex = 1;
             // 
             // lblApellido
             // 
             lblApellido.AutoSize = true;
-            lblApellido.Location = new Point(152, 24);
+            lblApellido.Location = new Point(174, 32);
             lblApellido.Name = "lblApellido";
-            lblApellido.Size = new Size(54, 15);
+            lblApellido.Size = new Size(69, 20);
             lblApellido.TabIndex = 11;
             lblApellido.Text = "Apellido:";
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(12, 42);
+            txtNombre.Location = new Point(14, 56);
+            txtNombre.Margin = new Padding(3, 4, 3, 4);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(130, 23);
+            txtNombre.Size = new Size(148, 27);
             txtNombre.TabIndex = 0;
             // 
             // lblNombre
             // 
             lblNombre.AutoSize = true;
-            lblNombre.Location = new Point(12, 24);
+            lblNombre.Location = new Point(14, 32);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(54, 15);
+            lblNombre.Size = new Size(67, 20);
             lblNombre.TabIndex = 10;
             lblNombre.Text = "Nombre:";
             // 
             // gbVehiculos
             // 
             gbVehiculos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            gbVehiculos.Controls.Add(txtKilometraje);
+            gbVehiculos.Controls.Add(lblKilometraje);
             gbVehiculos.Controls.Add(dgvVehiculos);
             gbVehiculos.Controls.Add(btnEliminarVehiculo);
             gbVehiculos.Controls.Add(btnGuardarVehiculo);
@@ -248,12 +265,32 @@
             gbVehiculos.Controls.Add(lblMarca);
             gbVehiculos.Controls.Add(txtPatente);
             gbVehiculos.Controls.Add(lblPatente);
-            gbVehiculos.Location = new Point(12, 322);
+            gbVehiculos.Location = new Point(14, 429);
+            gbVehiculos.Margin = new Padding(3, 4, 3, 4);
             gbVehiculos.Name = "gbVehiculos";
-            gbVehiculos.Size = new Size(956, 331);
+            gbVehiculos.Padding = new Padding(3, 4, 3, 4);
+            gbVehiculos.Size = new Size(1093, 441);
             gbVehiculos.TabIndex = 1;
             gbVehiculos.TabStop = false;
             gbVehiculos.Text = "Vehículos del cliente seleccionado";
+            // 
+            // txtKilometraje
+            // 
+            txtKilometraje.Location = new Point(703, 56);
+            txtKilometraje.Margin = new Padding(3, 4, 3, 4);
+            txtKilometraje.MaxLength = 7;
+            txtKilometraje.Name = "txtKilometraje";
+            txtKilometraje.Size = new Size(174, 27);
+            txtKilometraje.TabIndex = 15;
+            // 
+            // lblKilometraje
+            // 
+            lblKilometraje.AutoSize = true;
+            lblKilometraje.Location = new Point(703, 32);
+            lblKilometraje.Name = "lblKilometraje";
+            lblKilometraje.Size = new Size(89, 20);
+            lblKilometraje.TabIndex = 16;
+            lblKilometraje.Text = "Kilometraje:";
             // 
             // dgvVehiculos
             // 
@@ -263,21 +300,24 @@
             dgvVehiculos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvVehiculos.BackgroundColor = SystemColors.Window;
             dgvVehiculos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvVehiculos.Location = new Point(12, 118);
+            dgvVehiculos.Location = new Point(14, 157);
+            dgvVehiculos.Margin = new Padding(3, 4, 3, 4);
             dgvVehiculos.MultiSelect = false;
             dgvVehiculos.Name = "dgvVehiculos";
             dgvVehiculos.ReadOnly = true;
             dgvVehiculos.RowHeadersVisible = false;
+            dgvVehiculos.RowHeadersWidth = 51;
             dgvVehiculos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvVehiculos.Size = new Size(932, 201);
+            dgvVehiculos.Size = new Size(1065, 268);
             dgvVehiculos.TabIndex = 10;
             dgvVehiculos.SelectionChanged += dgvVehiculos_SelectionChanged;
             // 
             // btnEliminarVehiculo
             // 
-            btnEliminarVehiculo.Location = new Point(212, 78);
+            btnEliminarVehiculo.Location = new Point(242, 104);
+            btnEliminarVehiculo.Margin = new Padding(3, 4, 3, 4);
             btnEliminarVehiculo.Name = "btnEliminarVehiculo";
-            btnEliminarVehiculo.Size = new Size(90, 28);
+            btnEliminarVehiculo.Size = new Size(103, 37);
             btnEliminarVehiculo.TabIndex = 7;
             btnEliminarVehiculo.Text = "Eliminar";
             btnEliminarVehiculo.UseVisualStyleBackColor = true;
@@ -285,9 +325,10 @@
             // 
             // btnGuardarVehiculo
             // 
-            btnGuardarVehiculo.Location = new Point(112, 78);
+            btnGuardarVehiculo.Location = new Point(128, 104);
+            btnGuardarVehiculo.Margin = new Padding(3, 4, 3, 4);
             btnGuardarVehiculo.Name = "btnGuardarVehiculo";
-            btnGuardarVehiculo.Size = new Size(90, 28);
+            btnGuardarVehiculo.Size = new Size(103, 37);
             btnGuardarVehiculo.TabIndex = 6;
             btnGuardarVehiculo.Text = "Guardar";
             btnGuardarVehiculo.UseVisualStyleBackColor = true;
@@ -295,9 +336,10 @@
             // 
             // btnNuevoVehiculo
             // 
-            btnNuevoVehiculo.Location = new Point(12, 78);
+            btnNuevoVehiculo.Location = new Point(14, 104);
+            btnNuevoVehiculo.Margin = new Padding(3, 4, 3, 4);
             btnNuevoVehiculo.Name = "btnNuevoVehiculo";
-            btnNuevoVehiculo.Size = new Size(90, 28);
+            btnNuevoVehiculo.Size = new Size(103, 37);
             btnNuevoVehiculo.TabIndex = 5;
             btnNuevoVehiculo.Text = "Nuevo";
             btnNuevoVehiculo.UseVisualStyleBackColor = true;
@@ -305,99 +347,105 @@
             // 
             // txtColor
             // 
-            txtColor.Location = new Point(492, 42);
+            txtColor.Location = new Point(562, 56);
+            txtColor.Margin = new Padding(3, 4, 3, 4);
             txtColor.Name = "txtColor";
-            txtColor.Size = new Size(110, 23);
+            txtColor.Size = new Size(125, 27);
             txtColor.TabIndex = 4;
             // 
             // lblColor
             // 
             lblColor.AutoSize = true;
-            lblColor.Location = new Point(492, 24);
+            lblColor.Location = new Point(562, 32);
             lblColor.Name = "lblColor";
-            lblColor.Size = new Size(39, 15);
+            lblColor.Size = new Size(48, 20);
             lblColor.TabIndex = 14;
             lblColor.Text = "Color:";
             // 
             // numAnio
             // 
-            numAnio.Location = new Point(402, 42);
+            numAnio.Location = new Point(459, 56);
+            numAnio.Margin = new Padding(3, 4, 3, 4);
             numAnio.Maximum = new decimal(new int[] { 2100, 0, 0, 0 });
             numAnio.Minimum = new decimal(new int[] { 1950, 0, 0, 0 });
             numAnio.Name = "numAnio";
-            numAnio.Size = new Size(80, 23);
+            numAnio.Size = new Size(91, 27);
             numAnio.TabIndex = 3;
             numAnio.Value = new decimal(new int[] { 2026, 0, 0, 0 });
             // 
             // lblAnio
             // 
             lblAnio.AutoSize = true;
-            lblAnio.Location = new Point(402, 24);
+            lblAnio.Location = new Point(459, 32);
             lblAnio.Name = "lblAnio";
-            lblAnio.Size = new Size(32, 15);
+            lblAnio.Size = new Size(39, 20);
             lblAnio.TabIndex = 13;
             lblAnio.Text = "Año:";
             // 
             // txtModelo
             // 
-            txtModelo.Location = new Point(262, 42);
+            txtModelo.Location = new Point(299, 56);
+            txtModelo.Margin = new Padding(3, 4, 3, 4);
             txtModelo.Name = "txtModelo";
-            txtModelo.Size = new Size(130, 23);
+            txtModelo.Size = new Size(148, 27);
             txtModelo.TabIndex = 2;
             // 
             // lblModelo
             // 
             lblModelo.AutoSize = true;
-            lblModelo.Location = new Point(262, 24);
+            lblModelo.Location = new Point(299, 32);
             lblModelo.Name = "lblModelo";
-            lblModelo.Size = new Size(51, 15);
+            lblModelo.Size = new Size(64, 20);
             lblModelo.TabIndex = 12;
             lblModelo.Text = "Modelo:";
             // 
             // txtMarca
             // 
-            txtMarca.Location = new Point(122, 42);
+            txtMarca.Location = new Point(139, 56);
+            txtMarca.Margin = new Padding(3, 4, 3, 4);
             txtMarca.Name = "txtMarca";
-            txtMarca.Size = new Size(130, 23);
+            txtMarca.Size = new Size(148, 27);
             txtMarca.TabIndex = 1;
             // 
             // lblMarca
             // 
             lblMarca.AutoSize = true;
-            lblMarca.Location = new Point(122, 24);
+            lblMarca.Location = new Point(139, 32);
             lblMarca.Name = "lblMarca";
-            lblMarca.Size = new Size(43, 15);
+            lblMarca.Size = new Size(53, 20);
             lblMarca.TabIndex = 11;
             lblMarca.Text = "Marca:";
             // 
             // txtPatente
             // 
-            txtPatente.Location = new Point(12, 42);
+            txtPatente.Location = new Point(14, 56);
+            txtPatente.Margin = new Padding(3, 4, 3, 4);
             txtPatente.Name = "txtPatente";
-            txtPatente.Size = new Size(100, 23);
+            txtPatente.Size = new Size(114, 27);
             txtPatente.TabIndex = 0;
             // 
             // lblPatente
             // 
             lblPatente.AutoSize = true;
-            lblPatente.Location = new Point(12, 24);
+            lblPatente.Location = new Point(14, 32);
             lblPatente.Name = "lblPatente";
-            lblPatente.Size = new Size(50, 15);
+            lblPatente.Size = new Size(61, 20);
             lblPatente.TabIndex = 10;
             lblPatente.Text = "Patente:";
             // 
             // ClientesVehiculosForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(980, 665);
+            ClientSize = new Size(1120, 887);
             Controls.Add(gbVehiculos);
             Controls.Add(gbClientes);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            MinimumSize = new Size(996, 704);
+            Margin = new Padding(3, 4, 3, 4);
+            MinimumSize = new Size(1136, 923);
             Name = "ClientesVehiculosForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "ABM Clientes y Vehículos";
+            Text = "AutoService Pro - ABM de Clientes y Vehículos";
             Load += ClientesVehiculosForm_Load;
             gbClientes.ResumeLayout(false);
             gbClientes.PerformLayout();
@@ -442,5 +490,7 @@
         private Button btnEliminarVehiculo;
         private DataGridView dgvVehiculos;
         private Button btnVolverMenu;
+        private TextBox txtKilometraje;
+        private Label lblKilometraje;
     }
 }
